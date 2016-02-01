@@ -8,10 +8,10 @@
     - view leads list
     - view lead details
 
-**As a user**, when I "login" there should be a indication of login in or sign in.
-**As a user**, when Im in the leads list, the list should display the ff. “username” and “name” in each cell.
-**As a user**, when clicking the table cell I should "navigate" to the lead detail.
-**As a user**, upon viewing the lead detail i should see the “username”, “name”, “description” and “suburbName”.
+**As a user**, when I "login" there should be a indication of login in or sign in.  
+**As a user**, when Im in the leads list, the list should display the ff. “username” and “name” in each cell.  
+**As a user**, when clicking the table cell I should "navigate" to the lead detail.  
+**As a user**, upon viewing the lead detail i should see the “username”, “name”, “description” and “suburbName”.  
 
 ## What are we looking for 
     The purpose of this test is to determine the depth of your knowledge on the ff.
@@ -41,18 +41,17 @@ Login
 -----------
 ###Request:
 
-**Route:**
-    https://staging.serviceseeking.com.au/users/sign_in
-**Headers:**
-    * **Accept:** application/vnd.api+json; version=1
-    * **Content-Type:** application/vnd.api+json
-
-**Method:**
-    POST
-**Parameters:**
-    1. email
-    2. password
-**Body:**
+**Route:**  
+    https://staging.serviceseeking.com.au/users/sign_in  
+**Headers:**  
+    * **Accept:** application/vnd.api+json; version=1  
+    * **Content-Type:** application/vnd.api+json  
+**Method:**  
+    POST  
+**Parameters:**  
+    1. email  
+    2. password  
+**Body:**  
 {
 "data": {
 "type": "user_sessions",
