@@ -30,36 +30,3 @@ You have a maximum of 3 days to build this app
 2. Pull your version and write theyour code.
 3. When the code is completed, submit a pull request against our Service Seeking's version.
 4. We will review your code and will get in touch with you after that.
-
-
-
-
-API DOCUMENTATION
-=======
-
-Login
------------
-###Request:
-
-**Route:**  
-    https://staging.serviceseeking.com.au/users/sign_in  
-**Headers:**  
-    * **Accept:** application/vnd.api+json; version=1  
-    * **Content-Type:** application/vnd.api+json  
-**Method:**  
-    POST  
-**Parameters:**  
-    1. email  
-    2. password  
-**Body:**  
-{
-"data": {
-"type": "user_sessions",
-"attributes": {
-"email": "test_user@serviceseeking.com.au",
-"password": "123123"
-}
-}
-}.
-
-**Response**
