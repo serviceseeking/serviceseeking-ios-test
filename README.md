@@ -34,22 +34,24 @@ You have a maximum of 3 days to build this app
 
 
 
-## API DOCUMENTATION
+API DOCUMENTATION
+=======
 
-##Login
-**Request:**
+Login
+-----------
+###Request:
 
 **Route:**
-    https://staging.serviceseeking.com.au/users/sign_in.
+    https://staging.serviceseeking.com.au/users/sign_in
 **Headers:**
-    1. **Accept:** application/vnd.api+json; version=1.
-    2. **Content-Type:** application/vnd.api+json.
+    * **Accept:** application/vnd.api+json; version=1
+    * **Content-Type:** application/vnd.api+json
 
 **Method:**
-    POST.
+    POST
 **Parameters:**
-    1. email.
-    2. password.
+    1. email
+    2. password
 **Body:**
 {
 "data": {
