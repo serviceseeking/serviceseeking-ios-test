@@ -30,3 +30,13 @@ You have a maximum of 3 days to build this app
 2. Pull your version and write theyour code.
 3. When the code is completed, submit a pull request against our Service Seeking's version.
 4. We will review your code and will get in touch with you after that.
+
+```{
+  "data": {
+    "type": "user_sessions",
+    "attributes": {
+      "email": "test_business@serviceseeking.com.au",
+      "password": "123123"
+    }
+  }
+}```
