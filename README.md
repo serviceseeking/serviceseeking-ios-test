@@ -31,7 +31,8 @@ You have a maximum of 3 days to build this app
 3. When the code is completed, submit a pull request against our Service Seeking's version.
 4. We will review your code and will get in touch with you after that.
 
-# API DOCUMENTATION
+# API DOCUMENTATION  
+**Hint :** you can paste the json reponse in <http://jsonlint.com/> for better viewing  
 ## SIGN IN
 ### Request:
 **Url :** <https://staging.serviceseeking.com.au/users/sign_in>  
