@@ -32,13 +32,13 @@ You have a maximum of 3 days to build this app
 4. We will review your code and will get in touch with you after that.
 
 # API DOCUMENTATION
-## LOGIN
+## SIGN IN
 ### Request:
-**Url :** <https://staging.serviceseeking.com.au/>  
+**Url :** <https://staging.serviceseeking.com.au/users/sign_in>  
 **Method :** "POST"  
 **Headers :**     
-*Accept: application/vnd.api+json; version=1*  
-*Content-Type: application/vnd.api+json* 
+• Accept: application/vnd.api+json; version=1  
+• Content-Type: application/vnd.api+json
 
 **Sample Request Body :**  
 ```  
@@ -54,4 +54,381 @@ You have a maximum of 3 days to build this app
 ```   
 
 ### Response:
+**Status :**  ``201``  
+**Headers :**  
+• Content-Type: application/vnd.api+json  
+**Sample Response Body :**  
+```{
+	"data": {
+		"id": "13",
+		"type": "users",
+		"links": {
+			"self": "https://api.serviceseeking.com.au/users/13"
+		},
+		"attributes": {
+			"name": "Test Business",
+			"email": "test_business@serviceseeking.com.au",
+			"status": "active",
+			"phone": "+61 412 345 678",
+			"createdAt": "2016-02-04T21:20:40+11:00",
+			"updatedAt": "2016-02-04T21:20:41+11:00"
+		},
+		"relationships": {
+			"business": {
+				"links": {
+					"related": "https://api.serviceseeking.com.au/users/13/business"
+				},
+				"data": {
+					"type": "businesses",
+					"id": "5"
+				}
+			}
+		}
+	},
+	"links": {
+		"self": "https://api.serviceseeking.com.au/users/sign_in"
+	},
+	"meta": {
+		"token": "1234567890-abcdefghijk"
+	},
+	"included": [{
+		"id": "5",
+		"type": "businesses",
+		"links": {
+			"self": "https://api.serviceseeking.com.au/businesses/5"
+		},
+		"attributes": {
+			"name": "ServiceSeeking Business",
+			"number": null,
+			"phone": "0299999999",
+			"description": "ServiceSeeking business description",
+			"mobilePhone": "0404040404",
+			"faxNumber": null,
+			"address": null,
+			"websiteUrl": null,
+			"status": "active",
+			"state": null,
+			"hidden": false,
+			"createdAt": "2016-02-04T21:20:40+11:00",
+			"updatedAt": "2016-02-04T21:20:41+11:00"
+		},
+		"relationships": {
+			"suburb": {
+				"links": {
+					"self": "https://api.serviceseeking.com.au/businesses/5/relationships/suburb",
+					"related": "https://api.serviceseeking.com.au/businesses/5/suburb"
+				},
+				"data": {
+					"type": "suburbs",
+					"id": "1"
+				}
+			},
+			"job_filter": {
+				"links": {
+					"related": "https://api.serviceseeking.com.au/businesses/5/job_filter"
+				},
+				"data": {
+					"type": "job_filters",
+					"id": "5"
+				}
+			},
+			"eoi_templates": {
+				"links": {
+					"related": "https://api.serviceseeking.com.au/businesses/5/eoi_templates"
+				},
+				"data": []
+			},
+			"eoi_attachments": {
+				"links": {
+					"related": "https://api.serviceseeking.com.au/businesses/5/eoi_attachments"
+				},
+				"data": []
+			}
+		}
+	}]}```
+  
+    
+      
 
+## LEADS LISTING
+### Request:
+**Url :** <https://staging.serviceseeking.com.au/leads>  
+**Method :** "GET"  
+**Headers :**     
+• Accept: application/vnd.api+json; version=1  
+• Content-Type: application/vnd.api+json  
+• Authorization: Basic c3NzdGFnaW5nOnNzVDNzdDFuZyE=, Token token=afa1jlfhaoo1 ``<- (Token can be obtained upon successful SignIn)``  
+**Parameters :**  
+• page[size]  
+• page[number]
+
+### Response:
+**Status :**  ``200``  
+**Headers :**  
+• Content-Type: application/vnd.api+json  
+**Sample Response Body :** 
+```{
+	"data": [{
+		"id": "1",
+		"type": "leads",
+		"links": {
+			"self": "https://api.serviceseeking.com.au/leads/1"
+		},
+		"attributes": {
+			"name": "My Job Name",
+			"description": "This is the job description",
+			"userName": "Test User",
+			"suburbName": "Sydney",
+			"biddingClosesOn": "2016-02-07",
+			"distanceAway": "0kms",
+			"timing": null,
+			"canQuote": true,
+			"withinRange": true,
+			"new": true,
+			"featured": false,
+			"urgent": false,
+			"private": false,
+			"createdAt": "2016-02-04T21:20:06+11:00",
+			"updatedAt": "2016-02-04T21:20:06+11:00"
+		},
+		"relationships": {
+			"suburb": {
+				"links": {
+					"related": "https://api.serviceseeking.com.au/leads/1/suburb"
+				},
+				"data": {
+					"type": "suburbs",
+					"id": "1"
+				}
+			},
+			"attachments": {
+				"links": {
+					"related": "https://api.serviceseeking.com.au/leads/1/attachments"
+				},
+				"data": []
+			}
+		}
+	}, {
+		"id": "2",
+		"type": "leads",
+		"links": {
+			"self": "https://api.serviceseeking.com.au/leads/2"
+		},
+		"attributes": {
+			"name": "My Job Name",
+			"description": "This is the job description",
+			"userName": "Test User",
+			"suburbName": "Sydney",
+			"biddingClosesOn": "2016-02-07",
+			"distanceAway": "0kms",
+			"timing": null,
+			"canQuote": true,
+			"withinRange": true,
+			"new": true,
+			"featured": false,
+			"urgent": false,
+			"private": false,
+			"createdAt": "2016-02-04T21:20:09+11:00",
+			"updatedAt": "2016-02-04T21:20:10+11:00"
+		},
+		"relationships": {
+			"suburb": {
+				"links": {
+					"related": "https://api.serviceseeking.com.au/leads/2/suburb"
+				},
+				"data": {
+					"type": "suburbs",
+					"id": "1"
+				}
+			},
+			"attachments": {
+				"links": {
+					"related": "https://api.serviceseeking.com.au/leads/2/attachments"
+				},
+				"data": []
+			}
+		}
+	}, {
+		"id": "3",
+		"type": "leads",
+		"links": {
+			"self": "https://api.serviceseeking.com.au/leads/3"
+		},
+		"attributes": {
+			"name": "My Job Name",
+			"description": "This is the job description",
+			"userName": "Test User",
+			"suburbName": "Sydney",
+			"biddingClosesOn": "2016-02-07",
+			"distanceAway": "0kms",
+			"timing": null,
+			"canQuote": true,
+			"withinRange": true,
+			"new": true,
+			"featured": false,
+			"urgent": false,
+			"private": false,
+			"createdAt": "2016-02-04T21:20:10+11:00",
+			"updatedAt": "2016-02-04T21:20:10+11:00"
+		},
+		"relationships": {
+			"suburb": {
+				"links": {
+					"related": "https://api.serviceseeking.com.au/leads/3/suburb"
+				},
+				"data": {
+					"type": "suburbs",
+					"id": "1"
+				}
+			},
+			"attachments": {
+				"links": {
+					"related": "https://api.serviceseeking.com.au/leads/3/attachments"
+				},
+				"data": []
+			}
+		}
+	}],
+	"links": {
+		"self": "https://api.serviceseeking.com.au/leads?page%5Bnumber%5D=1&page%5Bsize%5D=6",
+		"first": "https://api.serviceseeking.com.au/leads?page%5Bnumber%5D=1&page%5Bsize%5D=6",
+		"last": "https://api.serviceseeking.com.au/leads?page%5Bnumber%5D=1&page%5Bsize%5D=6"
+	},
+	"meta": {
+		"count": 3,
+		"unReadCount": 3
+	},
+	"included": [{
+		"id": "1",
+		"type": "suburbs",
+		"links": {
+			"self": "https://api.serviceseeking.com.au/suburbs/1"
+		},
+		"attributes": {
+			"name": "Sydney",
+			"state": "NSW",
+			"postcode": "2000",
+			"lat": "-33.867139",
+			"lng": "151.207114",
+			"area": null,
+			"region": "Sydney Region"
+		}
+	}, {
+		"id": "1",
+		"type": "business_statuses",
+		"links": {
+			"self": "https://api.serviceseeking.com.au/businesses/1/status"
+		},
+		"attributes": {
+			"active": true,
+			"abn": "37124055465",
+			"abnStatus": "active",
+			"membershipPlan": "memberships",
+			"membershipActive": true,
+			"identityVerified": true,
+			"creditCardValid": true,
+			"quoteLastSentAt": null,
+			"quoteCountLast30Days": 0
+		}
+	}]
+}```
+
+
+## LEAD DETAIL
+### Request:
+**Url :** <https://staging.serviceseeking.com.au/leads/:lead_id>  
+**Method :** "GET"  
+**Headers :**     
+• Accept: application/vnd.api+json; version=1  
+• Content-Type: application/vnd.api+json  
+• Authorization: Basic c3NzdGFnaW5nOnNzVDNzdDFuZyE=, Token token=afa1jlfhaoo1 ``<- (Token can be obtained upon successful SignIn)``  
+**Parameters :**  
+• lead_id
+
+### Response:
+**Status :**  ``200 ``  
+**Headers :**  
+• Content-Type: application/vnd.api+json  
+**Sample Response Body :**  
+```{
+  "data": {
+    "id": "19",
+    "type": "leads",
+    "links": {
+      "self": "https://api.serviceseeking.com.au/leads/19"
+    },
+    "attributes": {
+      "name": "My Job Name",
+      "description": "This is the job description",
+      "userName": "Test User",
+      "suburbName": "Sydney",
+      "biddingClosesOn": "2016-02-07",
+      "distanceAway": "0kms",
+      "timing": null,
+      "canQuote": true,
+      "withinRange": true,
+      "new": true,
+      "featured": false,
+      "urgent": false,
+      "private": false,
+      "createdAt": "2016-02-04T21:20:01+11:00",
+      "updatedAt": "2016-02-04T21:20:01+11:00"
+    },
+    "relationships": {
+      "suburb": {
+        "links": {
+          "related": "https://api.serviceseeking.com.au/leads/19/suburb"
+        },
+        "data": {
+          "type": "suburbs",
+          "id": "1"
+        }
+      },
+      "attachments": {
+        "links": {
+          "related": "https://api.serviceseeking.com.au/leads/19/attachments"
+        },
+        "data": []
+      }
+    }
+  },
+  "links": {
+    "self": "https://api.serviceseeking.com.au/leads/19"
+  },
+  "included": [
+    {
+      "id": "1",
+      "type": "suburbs",
+      "links": {
+        "self": "https://api.serviceseeking.com.au/suburbs/1"
+      },
+      "attributes": {
+        "name": "Sydney",
+        "state": "NSW",
+        "postcode": "2000",
+        "lat": "-33.867139",
+        "lng": "151.207114",
+        "area": null,
+        "region": "Sydney Region"
+      }
+    },
+    {
+      "id": "36",
+      "type": "business_statuses",
+      "links": {
+        "self": "https://api.serviceseeking.com.au/businesses/36/status"
+      },
+      "attributes": {
+        "active": true,
+        "abn": "37124055465",
+        "abnStatus": "active",
+        "membershipPlan": "memberships",
+        "membershipActive": true,
+        "identityVerified": true,
+        "creditCardValid": true,
+        "quoteLastSentAt": null,
+        "quoteCountLast30Days": 0
+      }
+    }
+  ]
+}```
