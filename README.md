@@ -8,12 +8,12 @@
     - view leads list
     - view lead details
 
-**As a user**, when I "login" there should be a indication of login in or sign in.  
-**As a user**, when Im in the leads list, the list should display the ff. “username” and “name” in each cell.  
-**As a user**, when clicking the table cell I should "navigate" to the lead detail.  
-**As a user**, upon viewing the lead detail i should see the “username”, “name”, “description” and “suburbName”.  
+**As a user**, when I "login" there should be a indication of login in or sign in.
+**As a user**, when Im in the leads list, the list should display the ff. “username” and “name” in each cell.
+**As a user**, when clicking the table cell I should "navigate" to the lead detail.
+**As a user**, upon viewing the lead detail i should see the “username”, “name”, “description” and “suburbName”.
 
-## What are we looking for 
+## What are we looking for
     The purpose of this test is to determine the depth of your knowledge on the ff.
 1. **Coding Style**
 2. **OOP**
@@ -31,35 +31,49 @@ You have a maximum of 3 days to build this app
 3. When the code is completed, submit a pull request against our Service Seeking's version.
 4. We will review your code and will get in touch with you after that.
 
-# API DOCUMENTATION  
-**Hint :** you can paste the json reponse in <http://jsonlint.com/> for better viewing  
+# API DOCUMENTATION
+**Hint :** you can paste the json reponse in <http://jsonlint.com/> for better viewing
 ## SIGN IN
 ### Request:
-**Url :** <https://staging.serviceseeking.com.au/users/sign_in>  
-**Method :** "POST"  
-**Headers :**     
-• Accept: application/vnd.api+json; version=1  
-• Content-Type: application/vnd.api+json
 
-**Sample Request Body :**  
-```  
-{  
-  "data": {  
-    "type": "user_sessions",  
-    "attributes": {  
-      "email": "test_business@serviceseeking.com.au",  
-      "password": "123123"  
-    }  
-  }  
-}  
-```   
+##### Route
+```
+POST https://staging.serviceseeking.com.au/users/sign_in
+```
+
+##### Headers
+```
+Accept: application/vnd.api+json; version=1
+Content-Type: application/vnd.api+json
+```
+
+##### Sample Request Body
+```
+{
+  "data": {
+    "type": "user_sessions",
+    "attributes": {
+      "email": "test_business@serviceseeking.com.au",
+      "password": "123123"
+    }
+  }
+}
+```
 
 ### Response:
-**Status :**  ``201``  
-**Headers :**  
-• Content-Type: application/vnd.api+json  
-**Sample Response Body :**  
-```{
+##### Status 
+```
+201
+```
+
+##### Headers
+```
+Content-Type: application/vnd.api+json
+```
+
+##### Sample Response Body
+```
+{
 	"data": {
 		"id": "13",
 		"type": "users",
@@ -146,29 +160,44 @@ You have a maximum of 3 days to build this app
 				"data": []
 			}
 		}
-	}]}```
-  
-    
-      
+	}]}
+```
+
 
 ## LEADS LISTING
 ### Request:
-**Url :** <https://staging.serviceseeking.com.au/leads>  
-**Method :** "GET"  
-**Headers :**     
-• Accept: application/vnd.api+json; version=1  
-• Content-Type: application/vnd.api+json  
-• Authorization: Basic c3NzdGFnaW5nOnNzVDNzdDFuZyE=, Token token=afa1jlfhaoo1 ``<- (Token can be obtained upon successful SignIn)``  
-**Parameters :**  
-• page[size]  
-• page[number]
+##### Route
+```
+GET https://staging.serviceseeking.com.au/leads
+```
+
+##### Headers
+```
+Accept: application/vnd.api+json; version=1
+Content-Type: application/vnd.api+json
+Authorization: Basic c3NzdGFnaW5nOnNzVDNzdDFuZyE=, Token token=afa1jlfhaoo1
+```
+** Note ** Token can be obtained upon successful SignIn
+
+##### Parameters
+```
+page[size]
+page[number]
+```
 
 ### Response:
-**Status :**  ``200``  
-**Headers :**  
-• Content-Type: application/vnd.api+json  
-**Sample Response Body :** 
-```{
+##### Status
+```
+200
+```
+##### Headers
+```
+Content-Type: application/vnd.api+json
+```
+
+##### Sample Response Body
+```
+{
 	"data": [{
 		"id": "1",
 		"type": "leads",
@@ -332,26 +361,44 @@ You have a maximum of 3 days to build this app
 			"quoteCountLast30Days": 0
 		}
 	}]
-}```
+}
+```
 
 
 ## LEAD DETAIL
 ### Request:
-**Url :** <https://staging.serviceseeking.com.au/leads/:lead_id>  
-**Method :** "GET"  
-**Headers :**     
-• Accept: application/vnd.api+json; version=1  
-• Content-Type: application/vnd.api+json  
-• Authorization: Basic c3NzdGFnaW5nOnNzVDNzdDFuZyE=, Token token=afa1jlfhaoo1 ``<- (Token can be obtained upon successful SignIn)``  
-**Parameters :**  
-• lead_id
+
+#### Route
+```
+GET https://staging.serviceseeking.com.au/leads/:lead_id
+```
+#### Headers
+```
+Accept: application/vnd.api+json; version=1
+Content-Type: application/vnd.api+json
+Authorization: Basic c3NzdGFnaW5nOnNzVDNzdDFuZyE=, Token token=afa1jlfhaoo1
+```
+**Note:** Token can be obtained upon successful SignIn
+
+#### Parameters
+```
+lead_id
+```
 
 ### Response:
-**Status :**  ``200 ``  
-**Headers :**  
-• Content-Type: application/vnd.api+json  
-**Sample Response Body :**  
-```{
+##### Status
+```
+200
+```
+
+##### Headers
+```
+Content-Type: application/vnd.api+json
+```
+
+##### Sample Response Body
+```
+{
   "data": {
     "id": "19",
     "type": "leads",
@@ -432,4 +479,5 @@ You have a maximum of 3 days to build this app
       }
     }
   ]
-}```
+}
+```
