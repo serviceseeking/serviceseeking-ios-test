@@ -47,7 +47,7 @@ final class LeadsViewController: UIViewController {
 // MARK: - UITableViewDelegate
 extension LeadsViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let leadDetailViewController = LeadDetailViewController(lead: self.viewModel.leads[indexPath.item])
+        let leadDetailViewController = LeadDetailViewController(lead: viewModel.leads[indexPath.item])
         self.navigationController?.pushViewController(leadDetailViewController, animated: true)
     }
 }
@@ -59,13 +59,13 @@ extension LeadsViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.leads.count
+        return viewModel.leads.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(LeadCellReuseIdentifier, forIndexPath: indexPath)
         
-        let lead = self.viewModel.leads[indexPath.item]
+        let lead = viewModel.leads[indexPath.item]
         cell.textLabel?.text = lead.name
         cell.detailTextLabel?.text = lead.username
         
@@ -76,6 +76,6 @@ extension LeadsViewController: UITableViewDataSource {
 // MARK: - LeadsViewModelDelegate
 extension LeadsViewController: LeadsViewModelDelegate {
     func leadsViewModel(viewModel: LeadsViewModel, didFinishFetchingLeads leads: [Lead]) {
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
 }
