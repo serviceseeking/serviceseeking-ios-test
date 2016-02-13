@@ -8,28 +8,73 @@
 
 import UIKit
 
-class LeadsViewController: UIViewController {
+private let LeadCellReuseIdentifier = "LeadCell"
 
+final class LeadsViewController: UIViewController {
+
+    private let tableView = UITableView()
+    private let viewModel = LeadsViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.title = "Leads"
+        self.view.backgroundColor = .whiteColor()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: LeadCellReuseIdentifier)
+        self.view.addSubview(tableView)
+        NSLayoutConstraint.activateConstraints([
+            NSLayoutConstraint(item: tableView, attribute: .Top, relatedBy: .Equal, toItem: self.view, attribute: .Top, multiplier: 1.0, constant: 0.0),
+            NSLayoutConstraint(item: tableView, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1.0, constant: 0.0),
+            NSLayoutConstraint(item: tableView, attribute: .Right, relatedBy: .Equal, toItem: self.view, attribute: .Right, multiplier: 1.0, constant: 0.0),
+            NSLayoutConstraint(item: tableView, attribute: .Bottom, relatedBy: .Equal, toItem: self.view, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
+            ])
+        
+        viewModel.delegate = self
+        viewModel.fetchLeads()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+// MARK: - UITableViewDelegate
+extension LeadsViewController: UITableViewDelegate {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        <#code#>
     }
-    */
+}
 
+// MARK: - UITableViewDataSource
+extension LeadsViewController: UITableViewDataSource {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.viewModel.leads.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(LeadCellReuseIdentifier, forIndexPath: indexPath)
+        
+        let lead = self.viewModel.leads[indexPath.item]
+        cell.textLabel?.text = lead.name
+        cell.detailTextLabel?.text = lead.username
+        
+        return cell
+    }
+}
+
+// MARK: - LeadsViewModelDelegate
+extension LeadsViewController: LeadsViewModelDelegate {
+    func leadsViewModel(viewModel: LeadsViewModel, didFinishFetchingLeads leads: [Lead]) {
+        self.tableView.reloadData()
+    }
 }
