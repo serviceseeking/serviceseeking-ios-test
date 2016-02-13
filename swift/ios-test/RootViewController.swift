@@ -16,14 +16,13 @@ final class RootViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let leadsViewController = LeadsViewController()
-        let leadsNavigationController = UINavigationController(rootViewController: leadsViewController)
-        self.currentViewController = leadsNavigationController
-        
-        self.currentViewController.view.frame = self.view.bounds
-        self.addChildViewController(self.currentViewController)
+        currentViewController = LoginViewController()
+        currentViewController.view.frame = self.view.bounds
+        self.addChildViewController(currentViewController)
         self.view.addSubview(self.currentViewController.view)
-        self.currentViewController.didMoveToParentViewController(self)
+        currentViewController.didMoveToParentViewController(self)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didReceiveSuccessNotification", name: "SuccessLoginNotification", object: nil)
     }
 
     override func didReceiveMemoryWarning() {
