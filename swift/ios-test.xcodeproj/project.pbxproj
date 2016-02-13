@@ -106,6 +106,23 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		737BE7A31C6F358300021D5E /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				737BE7951C6F040100021D5E /* LoginViewController.swift */,
+			);
+			name = Authentication;
+			sourceTree = "<group>";
+		};
+		737BE7A41C6F358900021D5E /* Leads */ = {
+			isa = PBXGroup;
+			children = (
+				73DEF0621C6F01A60096AD06 /* LeadsViewController.swift */,
+				737BE79F1C6F33AA00021D5E /* LeadDetailViewController.swift */,
+			);
+			name = Leads;
+			sourceTree = "<group>";
+		};
 		73DEF05E1C6EFF560096AD06 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,9 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				D1A7F4241C4DBF48009511FE /* RootViewController.swift */,
-				737BE7951C6F040100021D5E /* LoginViewController.swift */,
-				73DEF0621C6F01A60096AD06 /* LeadsViewController.swift */,
-				737BE79F1C6F33AA00021D5E /* LeadDetailViewController.swift */,
+				737BE7A31C6F358300021D5E /* Authentication */,
+				737BE7A41C6F358900021D5E /* Leads */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
