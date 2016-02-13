@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		737BE7961C6F040100021D5E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737BE7951C6F040100021D5E /* LoginViewController.swift */; };
 		73DEF0631C6F01A60096AD06 /* LeadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DEF0621C6F01A60096AD06 /* LeadsViewController.swift */; };
 		D1A7F4231C4DBF48009511FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A7F4221C4DBF48009511FE /* AppDelegate.swift */; };
 		D1A7F4251C4DBF48009511FE /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A7F4241C4DBF48009511FE /* RootViewController.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		737BE7951C6F040100021D5E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		73DEF0621C6F01A60096AD06 /* LeadsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeadsViewController.swift; sourceTree = "<group>"; };
 		D1A7F41F1C4DBF48009511FE /* ios-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1A7F4221C4DBF48009511FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				D1A7F4241C4DBF48009511FE /* RootViewController.swift */,
+				737BE7951C6F040100021D5E /* LoginViewController.swift */,
 				73DEF0621C6F01A60096AD06 /* LeadsViewController.swift */,
 			);
 			name = "View Controller";
@@ -297,6 +300,7 @@
 				73DEF0631C6F01A60096AD06 /* LeadsViewController.swift in Sources */,
 				D1A7F4251C4DBF48009511FE /* RootViewController.swift in Sources */,
 				D1A7F42B1C4DBF48009511FE /* ios_test.xcdatamodeld in Sources */,
+				737BE7961C6F040100021D5E /* LoginViewController.swift in Sources */,
 				D1A7F4231C4DBF48009511FE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
