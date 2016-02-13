@@ -10,27 +10,20 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-protocol LoginViewModelDelegate: class {
-    func loginViewModelDidSuccessfullyLogin(viewModel: LoginViewModel)
-    func loginViewModelDidFailLogin(viewModel: LoginViewModel, withError error: NSError)
-}
-
 final class LoginViewModel: NSObject {
     
     var email = ""
     var password = ""
     
-    weak var delegate: LoginViewModelDelegate?
-    
     func login() {
         let loginRequest = ServiceSeekingAPI.Router.Login(self.email, self.password)
         Alamofire.request(loginRequest).response { (request, response, data, error) -> Void in
-            if let error = error {
-                self.delegate?.loginViewModelDidFailLogin(self, withError: error)
+            if let _ = error {
+                NSNotificationCenter.defaultCenter().postNotificationName("FailLoginNotification", object: nil)
             } else if let data = data {
                 let json = JSON(data: data)
                 print(json)
-                self.delegate?.loginViewModelDidSuccessfullyLogin(self)
+                NSNotificationCenter.defaultCenter().postNotificationName("SuccessLoginNotification", object: nil)
             }
         }
     }

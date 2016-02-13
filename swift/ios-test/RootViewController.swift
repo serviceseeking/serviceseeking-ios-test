@@ -30,5 +30,23 @@ final class RootViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: - Selector
+    func didReceiveSuccessNotification() {
+        currentViewController.willMoveToParentViewController(nil)
+        
+        let leadsViewController = LeadsViewController()
+        let leadsNavigationController = UINavigationController(rootViewController: leadsViewController)
+        
+        self.transitionFromViewController(currentViewController,
+            toViewController: leadsNavigationController,
+            duration: 0.4,
+            options: .TransitionCrossDissolve,
+            animations: nil) { (completed) -> Void in
+                self.currentViewController.removeFromParentViewController()
+                self.currentViewController = leadsNavigationController
+                self.currentViewController.didMoveToParentViewController(self)
+        }
+    }
 }
 

@@ -54,6 +54,8 @@ final class LoginViewController: UIViewController {
             NSLayoutConstraint(item: loginButton, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1.0, constant: 20.0),
             NSLayoutConstraint(item: loginButton, attribute: .Right, relatedBy: .Equal, toItem: self.view, attribute: .Right, multiplier: 1.0, constant: -20.0)
             ])
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didReceiveFailLoginNotification", name: "FailLoginNotification", object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,6 +70,12 @@ final class LoginViewController: UIViewController {
             self.viewModel.password = password
             self.viewModel.login()
         }
+    }
+    
+    func didReceiveFailLoginNotification() {
+        let errorAlertController = UIAlertController(title: nil, message: "Error logging in ", preferredStyle: .Alert)
+        errorAlertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        self.presentViewController(errorAlertController, animated: true, completion: nil)
     }
 }
 
