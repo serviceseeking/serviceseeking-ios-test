@@ -47,7 +47,8 @@ final class LeadsViewController: UIViewController {
 // MARK: - UITableViewDelegate
 extension LeadsViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        <#code#>
+        let leadDetailViewController = LeadDetailViewController(lead: self.viewModel.leads[indexPath.item])
+        self.navigationController?.pushViewController(leadDetailViewController, animated: true)
     }
 }
 
