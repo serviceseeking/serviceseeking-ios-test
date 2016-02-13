@@ -10,13 +10,16 @@ import UIKit
 
 final class LoginViewController: UIViewController {
 
+    private let viewModel = LoginViewModel()
+    private let emailTextField = UITextField()
+    private let passwordTextField = UITextField()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = .whiteColor()
         
-        let emailTextField = UITextField()
         emailTextField.delegate = self
         emailTextField.placeholder = "Email"
         emailTextField.textAlignment = .Center
@@ -28,7 +31,6 @@ final class LoginViewController: UIViewController {
             NSLayoutConstraint(item: emailTextField, attribute: .Right, relatedBy: .Equal, toItem: self.view, attribute: .Right, multiplier: 1.0, constant: -20.0)
             ])
         
-        let passwordTextField = UITextField()
         passwordTextField.delegate = self
         passwordTextField.secureTextEntry = true
         passwordTextField.textAlignment = .Center
@@ -58,6 +60,17 @@ final class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: - Selector
+    func didTapLoginButton() {
+        if let email = emailTextField.text, let password = passwordTextField.text {
+            self.viewModel.email = email
+            self.viewModel.password = password
+            self.viewModel.login()
+        }
+    }
+}
+
 // MARK: - UITextFieldDelegate
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
