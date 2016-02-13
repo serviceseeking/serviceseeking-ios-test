@@ -50,9 +50,7 @@ struct ServiceSeekingAPI {
             let URLRequest = NSMutableURLRequest(URL: URL.URLByAppendingPathComponent(self.path))
             URLRequest.HTTPMethod = method.rawValue
             URLRequest.setValue("application/vnd.api+json", forHTTPHeaderField: "Content-Type")
-            URLRequest.setValue("application/vnd.api+json", forHTTPHeaderField: "Accept")
-            URLRequest.setValue("1", forHTTPHeaderField: "version")
-            //URLRequest.setValue("compress, gzip", forHTTPHeaderField: "Accept-Encoding")
+            URLRequest.setValue("application/vnd.api+json; version=1", forHTTPHeaderField: "Accept")
             let encoding = Alamofire.ParameterEncoding.URL
             
             // append login token
