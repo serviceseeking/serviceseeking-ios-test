@@ -14,6 +14,7 @@
 		737BE79C1C6F300A00021D5E /* LeadsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737BE79B1C6F300A00021D5E /* LeadsViewModel.swift */; };
 		737BE79E1C6F308600021D5E /* Lead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737BE79D1C6F308600021D5E /* Lead.swift */; };
 		737BE7A01C6F33AA00021D5E /* LeadDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737BE79F1C6F33AA00021D5E /* LeadDetailViewController.swift */; };
+		737BE7A21C6F34CE00021D5E /* LeadDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737BE7A11C6F34CE00021D5E /* LeadDetailViewModel.swift */; };
 		73DEF0631C6F01A60096AD06 /* LeadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DEF0621C6F01A60096AD06 /* LeadsViewController.swift */; };
 		D1A7F4231C4DBF48009511FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A7F4221C4DBF48009511FE /* AppDelegate.swift */; };
 		D1A7F4251C4DBF48009511FE /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A7F4241C4DBF48009511FE /* RootViewController.swift */; };
@@ -51,6 +52,7 @@
 		737BE79B1C6F300A00021D5E /* LeadsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeadsViewModel.swift; sourceTree = "<group>"; };
 		737BE79D1C6F308600021D5E /* Lead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lead.swift; sourceTree = "<group>"; };
 		737BE79F1C6F33AA00021D5E /* LeadDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeadDetailViewController.swift; sourceTree = "<group>"; };
+		737BE7A11C6F34CE00021D5E /* LeadDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeadDetailViewModel.swift; sourceTree = "<group>"; };
 		73DEF0621C6F01A60096AD06 /* LeadsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeadsViewController.swift; sourceTree = "<group>"; };
 		D1A7F41F1C4DBF48009511FE /* ios-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1A7F4221C4DBF48009511FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			children = (
 				737BE7991C6F0E1500021D5E /* LoginViewModel.swift */,
 				737BE79B1C6F300A00021D5E /* LeadsViewModel.swift */,
+				737BE7A11C6F34CE00021D5E /* LeadDetailViewModel.swift */,
 			);
 			name = "View Model";
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				737BE7981C6F0B7700021D5E /* API.swift in Sources */,
 				D1A7F4231C4DBF48009511FE /* AppDelegate.swift in Sources */,
 				737BE79A1C6F0E1500021D5E /* LoginViewModel.swift in Sources */,
+				737BE7A21C6F34CE00021D5E /* LeadDetailViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
