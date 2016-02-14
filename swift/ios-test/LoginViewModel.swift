@@ -22,7 +22,16 @@ final class LoginViewModel: NSObject {
                 NSNotificationCenter.defaultCenter().postNotificationName("FailLoginNotification", object: nil)
             } else if let data = data {
                 let json = JSON(data: data)
-                print(json)
+                let userAttributes = json["attributes"]
+                
+                let user = User.sharedUser
+                user.name = userAttributes["name"].stringValue
+                user.email = userAttributes["email"].stringValue
+                user.status = userAttributes["status"].stringValue
+                user.phone = userAttributes["phone"].stringValue
+                user.createdAt = userAttributes["createdAt"].stringValue
+                user.updatedAt = userAttributes["updatedAt"].stringValue
+                user.token = json["meta"]["token"].stringValue
                 NSNotificationCenter.defaultCenter().postNotificationName("SuccessLoginNotification", object: nil)
             }
         }
