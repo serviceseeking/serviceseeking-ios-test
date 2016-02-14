@@ -36,6 +36,7 @@ final class RootViewController: UIViewController {
         
         let leadsViewController = LeadsViewController()
         let leadsNavigationController = UINavigationController(rootViewController: leadsViewController)
+        self.addChildViewController(leadsNavigationController)
         
         self.transitionFromViewController(currentViewController,
             toViewController: leadsNavigationController,
