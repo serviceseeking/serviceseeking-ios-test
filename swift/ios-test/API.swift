@@ -51,15 +51,20 @@ struct ServiceSeekingAPI {
             URLRequest.HTTPMethod = method.rawValue
             URLRequest.setValue("application/vnd.api+json", forHTTPHeaderField: "Content-Type")
             URLRequest.setValue("application/vnd.api+json; version=1", forHTTPHeaderField: "Accept")
-            let encoding = Alamofire.ParameterEncoding.URL
             
-            // append login token
-            /*if let authToken = Utility.authToken {
-            URLRequest.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
-            }*/
-
+            var authorizationValue = "Basic c3NzdGFnaW5nOnNzVDNzdDFuZyE="
+            if User.sharedUser.token.characters.count > 0 {
+                // append token if available
+                authorizationValue.appendContentsOf(", Token token=\(User.sharedUser.token)")
+            }
+            URLRequest.setValue(authorizationValue, forHTTPHeaderField: "Authorization")
+            
+            // append parameters to body
             let dataParameters = ["type": "user_sessions", "attributes": parameters]
-            return encoding.encode(URLRequest, parameters: ["data": dataParameters]).0
+            let jsonData = try! NSJSONSerialization.dataWithJSONObject(["data": dataParameters], options: .PrettyPrinted)
+            URLRequest.HTTPBody = jsonData
+            
+            return URLRequest
         }
     }
 }
