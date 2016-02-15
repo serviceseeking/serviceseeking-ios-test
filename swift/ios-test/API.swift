@@ -51,11 +51,10 @@ struct ServiceSeekingAPI {
             
             switch self {
             case .Login(let email, let password):
-                let parameters = ["email": "test_business@serviceseeking.com.au", "password": "123123"]
-                //let parameters = ["email": email, "password": password]
+                let parameters = ["email": email, "password": password]
+                let dataParameters = ["type": "user_sessions", "attributes": parameters]
                 
                 // append parameters to body
-                let dataParameters = ["type": "user_sessions", "attributes": parameters]
                 let jsonData = try! NSJSONSerialization.dataWithJSONObject(["data": dataParameters], options: .PrettyPrinted)
                 URLRequest.HTTPBody = jsonData
             case .Leads:
