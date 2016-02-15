@@ -20,6 +20,7 @@ final class LeadsViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.title = "Leads"
+        self.edgesForExtendedLayout = .None
         self.view.backgroundColor = .whiteColor()
         
         tableView.delegate = self
