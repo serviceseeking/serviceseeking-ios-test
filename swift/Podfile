@@ -6,6 +6,7 @@ use_frameworks!
 target 'ios-test' do
     pod 'Alamofire'
     pod 'SwiftyJSON'
+    pod 'PKHUD'
 end
 
 target 'ios-testTests' do
