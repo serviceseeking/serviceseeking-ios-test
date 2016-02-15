@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PKHUD
 
 final class RootViewController: UIViewController {
 
@@ -46,6 +47,8 @@ final class RootViewController: UIViewController {
                 self.currentViewController.removeFromParentViewController()
                 self.currentViewController = leadsNavigationController
                 self.currentViewController.didMoveToParentViewController(self)
+                
+                PKHUD.sharedHUD.hide()
         }
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PKHUD
 
 final class LoginViewController: UIViewController {
 
@@ -66,6 +67,13 @@ final class LoginViewController: UIViewController {
     // MARK: - Selector
     func didTapLoginButton() {
         if let email = emailTextField.text, let password = passwordTextField.text {
+            // show HUD
+            let hud = PKHUD.sharedHUD
+            hud.contentView = PKHUDTextView(text: "Logging in...")
+            hud.dimsBackground = true
+            hud.show()
+            
+            // update data models
             self.viewModel.email = email
             self.viewModel.password = password
             self.viewModel.login()
@@ -73,6 +81,8 @@ final class LoginViewController: UIViewController {
     }
     
     func didReceiveFailLoginNotification() {
+        PKHUD.sharedHUD.hide()
+        
         let errorAlertController = UIAlertController(title: nil, message: "Error logging in ", preferredStyle: .Alert)
         errorAlertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
         self.presentViewController(errorAlertController, animated: true, completion: nil)
