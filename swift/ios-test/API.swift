@@ -35,17 +35,7 @@ struct ServiceSeekingAPI {
             }
         }
         
-        // MARK: URLRequestConvertible
         var URLRequest: NSMutableURLRequest {
-            let parameters: [String: AnyObject] = {
-                switch self {
-                case .Login(let email, let password):
-                    return ["email": email, "password": password]
-                case .Leads:
-                    return ["": ""]
-                }
-            }()
-            
             let URL = NSURL(string: Router.baseURLString)!
             let URLRequest = NSMutableURLRequest(URL: URL.URLByAppendingPathComponent(self.path))
             URLRequest.HTTPMethod = method.rawValue
@@ -59,10 +49,18 @@ struct ServiceSeekingAPI {
             }
             URLRequest.setValue(authorizationValue, forHTTPHeaderField: "Authorization")
             
-            // append parameters to body
-            let dataParameters = ["type": "user_sessions", "attributes": parameters]
-            let jsonData = try! NSJSONSerialization.dataWithJSONObject(["data": dataParameters], options: .PrettyPrinted)
-            URLRequest.HTTPBody = jsonData
+            switch self {
+            case .Login(let email, let password):
+                let parameters = ["email": "test_business@serviceseeking.com.au", "password": "123123"]
+                //let parameters = ["email": email, "password": password]
+                
+                // append parameters to body
+                let dataParameters = ["type": "user_sessions", "attributes": parameters]
+                let jsonData = try! NSJSONSerialization.dataWithJSONObject(["data": dataParameters], options: .PrettyPrinted)
+                URLRequest.HTTPBody = jsonData
+            case .Leads:
+                break
+            }
             
             return URLRequest
         }
