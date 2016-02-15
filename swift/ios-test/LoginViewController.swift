@@ -56,7 +56,7 @@ final class LoginViewController: UIViewController {
             NSLayoutConstraint(item: loginButton, attribute: .Right, relatedBy: .Equal, toItem: self.view, attribute: .Right, multiplier: 1.0, constant: -20.0)
             ])
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didReceiveFailLoginNotification", name: "FailLoginNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didReceiveFailLoginNotification:", name: "FailLoginNotification", object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,7 +80,7 @@ final class LoginViewController: UIViewController {
         }
     }
     
-    func didReceiveFailLoginNotification() {
+    func didReceiveFailLoginNotification(notification: NSNotification) {
         PKHUD.sharedHUD.hide()
         
         let errorAlertController = UIAlertController(title: nil, message: "Error logging in ", preferredStyle: .Alert)

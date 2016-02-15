@@ -19,7 +19,8 @@ final class LoginViewModel: NSObject {
         let loginRequest = ServiceSeekingAPI.Router.Login(self.email, self.password)
         Alamofire.request(loginRequest).response { (request, response, data, error) -> Void in
             if let _ = error {
-                NSNotificationCenter.defaultCenter().postNotificationName("FailLoginNotification", object: nil)
+                let failLoginNotification = NSNotification(name: "FailLoginNotification", object: nil, userInfo: ["message": "Error Loggin In"])
+                NSNotificationCenter.defaultCenter().postNotification(failLoginNotification)
             } else if let data = data {
                 let json = JSON(data: data)
                 if json["data"]["attributes"] != nil {
