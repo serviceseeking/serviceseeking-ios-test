@@ -66,7 +66,9 @@ final class LoginViewController: UIViewController {
     
     // MARK: - Selector
     func didTapLoginButton() {
-        if let email = emailTextField.text, let password = passwordTextField.text {
+        if let email = emailTextField.text where email.characters.count > 0,
+            let password = passwordTextField.text where password.characters.count > 0 {
+                
             // show HUD
             let hud = PKHUD.sharedHUD
             hud.contentView = PKHUDTextView(text: "Logging in...")
@@ -77,6 +79,8 @@ final class LoginViewController: UIViewController {
             self.viewModel.email = email
             self.viewModel.password = password
             self.viewModel.login()
+        } else {
+            self.showAlert(withMessage: "Email and Password must not be empty")
         }
     }
     
