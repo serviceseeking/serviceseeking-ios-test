@@ -40,6 +40,7 @@ class LeadDetailViewController: UIViewController {
         let nameLabel = UILabel()
         nameLabel.text = viewModel.lead.name
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(nameLabel)
         NSLayoutConstraint.activateConstraints([
             NSLayoutConstraint(item: nameLabel, attribute: .Top, relatedBy: .Equal, toItem: usernameLabel, attribute: .Bottom, multiplier: 1.0, constant: 20.0),
             NSLayoutConstraint(item: nameLabel, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1.0, constant: 0.0)
@@ -48,6 +49,7 @@ class LeadDetailViewController: UIViewController {
         let descriptionLabel = UILabel()
         descriptionLabel.text = viewModel.lead.jobDescription
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(descriptionLabel)
         NSLayoutConstraint.activateConstraints([
             NSLayoutConstraint(item: descriptionLabel, attribute: .Top, relatedBy: .Equal, toItem: nameLabel, attribute: .Bottom, multiplier: 1.0, constant: 20.0),
             NSLayoutConstraint(item: descriptionLabel, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1.0, constant: 0.0)
@@ -56,6 +58,7 @@ class LeadDetailViewController: UIViewController {
         let suburbLabel = UILabel()
         suburbLabel.text = viewModel.lead.suburb
         suburbLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(suburbLabel)
         NSLayoutConstraint.activateConstraints([
             NSLayoutConstraint(item: suburbLabel, attribute: .Top, relatedBy: .Equal, toItem: descriptionLabel, attribute: .Bottom, multiplier: 1.0, constant: 20.0),
             NSLayoutConstraint(item: suburbLabel, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1.0, constant: 0.0)
