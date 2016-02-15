@@ -25,7 +25,6 @@ final class LeadsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: LeadCellReuseIdentifier)
         self.view.addSubview(tableView)
         NSLayoutConstraint.activateConstraints([
             NSLayoutConstraint(item: tableView, attribute: .Top, relatedBy: .Equal, toItem: self.view, attribute: .Top, multiplier: 1.0, constant: 0.0),
@@ -63,13 +62,17 @@ extension LeadsViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(LeadCellReuseIdentifier, forIndexPath: indexPath)
+        var cell = tableView.dequeueReusableCellWithIdentifier(LeadCellReuseIdentifier)
+        
+        if cell == nil {
+            cell = UITableViewCell(style: .Subtitle, reuseIdentifier: LeadCellReuseIdentifier)
+        }
         
         let lead = viewModel.leads[indexPath.item]
-        cell.textLabel?.text = lead.name
-        cell.detailTextLabel?.text = lead.username
+        cell!.textLabel?.text = lead.name
+        cell!.detailTextLabel?.text = lead.username
         
-        return cell
+        return cell!
     }
 }
 
