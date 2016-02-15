@@ -22,13 +22,12 @@ final class LeadsViewModel: NSObject {
     func fetchLeads() {
         let getLeadsRequest = ServiceSeekingAPI.Router.Leads
         Alamofire.request(getLeadsRequest).response { (request, response, data, error) -> Void in
-            print(response!.allHeaderFields)
             if let error = error {
                 // do something for error
                 print(error)
             } else if let data = data {
                 let json = JSON(data: data)
-                for (_, leadJSON) in json["data"] {
+                for leadJSON in json["data"].arrayValue {
                     let leadAttributes = leadJSON["attributes"]
                     
                     let lead = Lead()
