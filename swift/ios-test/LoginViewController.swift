@@ -86,8 +86,15 @@ final class LoginViewController: UIViewController {
     
     func didReceiveFailLoginNotification(notification: NSNotification) {
         PKHUD.sharedHUD.hide()
-        
-        let errorAlertController = UIAlertController(title: nil, message: "Error logging in ", preferredStyle: .Alert)
+
+        if let userInfo = notification.userInfo, let errorMessage = userInfo["message"] as? String {
+            self.showAlert(withMessage: errorMessage)
+        }
+    }
+    
+    // MARK: - Private
+    private func showAlert(withMessage message: String) {
+        let errorAlertController = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
         errorAlertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
         self.presentViewController(errorAlertController, animated: true, completion: nil)
     }
