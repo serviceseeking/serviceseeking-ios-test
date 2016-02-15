@@ -26,42 +26,52 @@ class LeadDetailViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.title = "Lead Detail"
+        self.edgesForExtendedLayout = .None
         self.view.backgroundColor = .whiteColor()
         
         let usernameLabel = UILabel()
+        usernameLabel.textAlignment = .Center
         usernameLabel.text = viewModel.lead.username
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(usernameLabel)
         NSLayoutConstraint.activateConstraints([
             NSLayoutConstraint(item: usernameLabel, attribute: .Top, relatedBy: .Equal, toItem: self.view, attribute: .Top, multiplier: 1.0, constant: 50.0),
-            NSLayoutConstraint(item: usernameLabel, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1.0, constant: 0.0)
+            NSLayoutConstraint(item: usernameLabel, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1.0, constant: 20.0),
+            NSLayoutConstraint(item: usernameLabel, attribute: .Right, relatedBy: .Equal, toItem: self.view, attribute: .Right, multiplier: 1.0, constant: -20.0)
             ])
         
         let nameLabel = UILabel()
+        nameLabel.textAlignment = .Center
         nameLabel.text = viewModel.lead.name
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(nameLabel)
         NSLayoutConstraint.activateConstraints([
             NSLayoutConstraint(item: nameLabel, attribute: .Top, relatedBy: .Equal, toItem: usernameLabel, attribute: .Bottom, multiplier: 1.0, constant: 20.0),
-            NSLayoutConstraint(item: nameLabel, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1.0, constant: 0.0)
+            NSLayoutConstraint(item: nameLabel, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1.0, constant: 20.0),
+            NSLayoutConstraint(item: nameLabel, attribute: .Right, relatedBy: .Equal, toItem: self.view, attribute: .Right, multiplier: 1.0, constant: -20.0)
             ])
         
         let descriptionLabel = UILabel()
+        descriptionLabel.numberOfLines = 0
+        descriptionLabel.textAlignment = .Center
         descriptionLabel.text = viewModel.lead.jobDescription
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(descriptionLabel)
         NSLayoutConstraint.activateConstraints([
             NSLayoutConstraint(item: descriptionLabel, attribute: .Top, relatedBy: .Equal, toItem: nameLabel, attribute: .Bottom, multiplier: 1.0, constant: 20.0),
-            NSLayoutConstraint(item: descriptionLabel, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1.0, constant: 0.0)
+            NSLayoutConstraint(item: descriptionLabel, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1.0, constant: 20.0),
+            NSLayoutConstraint(item: descriptionLabel, attribute: .Right, relatedBy: .Equal, toItem: self.view, attribute: .Right, multiplier: 1.0, constant: -20.0)
             ])
         
         let suburbLabel = UILabel()
+        suburbLabel.textAlignment = .Center
         suburbLabel.text = viewModel.lead.suburb
         suburbLabel.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(suburbLabel)
         NSLayoutConstraint.activateConstraints([
             NSLayoutConstraint(item: suburbLabel, attribute: .Top, relatedBy: .Equal, toItem: descriptionLabel, attribute: .Bottom, multiplier: 1.0, constant: 20.0),
-            NSLayoutConstraint(item: suburbLabel, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1.0, constant: 0.0)
+            NSLayoutConstraint(item: suburbLabel, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1.0, constant: 20.0),
+            NSLayoutConstraint(item: suburbLabel, attribute: .Right, relatedBy: .Equal, toItem: self.view, attribute: .Right, multiplier: 1.0, constant: -20.0)
             ])
     }
 
