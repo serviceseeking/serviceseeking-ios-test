@@ -24,6 +24,7 @@ final class LoginViewController: UIViewController {
         emailTextField.delegate = self
         emailTextField.placeholder = "Email"
         emailTextField.textAlignment = .Center
+        emailTextField.autocapitalizationType = .None
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(emailTextField)
         NSLayoutConstraint.activateConstraints([
