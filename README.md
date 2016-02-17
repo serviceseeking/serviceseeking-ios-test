@@ -45,6 +45,7 @@ POST https://staging.serviceseeking.com.au/users/sign_in
 ```
 Accept: application/vnd.api+json; version=1
 Content-Type: application/vnd.api+json
+Authorization: Basic c3NzdGFnaW5nOnNzVDNzdDFuZyE=
 ```
 
 ##### Sample Request Body
