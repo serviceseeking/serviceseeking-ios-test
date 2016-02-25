@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MainViewController.h"
+
+extern NSString *token;
 
 @interface ViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UITextField *textfield_username;
+@property (weak, nonatomic) IBOutlet UITextField *textfield_password;
+- (IBAction)submitRequet:(id)sender;
 
 @end
 
