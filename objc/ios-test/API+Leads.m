@@ -14,9 +14,18 @@
 
 #pragma mark - Leads
 
-- (void)getLeadsListingWithCompletionHandler:(HTTPRequestCompletionBlock)completionHandler {
+- (void)getLeadsListingWithPageNumber:(NSNumber *)number pageSize:(NSNumber *)size completionHandler:(HTTPRequestCompletionBlock)completionHandler {
     [self includeToken:[User sharedUserInstance].token];
-    [self requestWithMethod:@"GET" path:PATH_LEADS parameters:nil completionHandler:completionHandler];
+    
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    if (![number isEqualToNumber:@0] && ![number isEqualToNumber:@1]) {
+        [parameters setValue:number forKey:@"page[number]"];
+        [parameters setValue:size forKey:@"page[size]"];
+    }
+    else {
+        parameters = nil;
+    }
+    [self GETPath:PATH_LEADS parameters:parameters completionHandler:completionHandler];
 }
 
 @end

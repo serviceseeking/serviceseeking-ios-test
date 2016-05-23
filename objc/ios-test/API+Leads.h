@@ -10,7 +10,8 @@
 
 @interface API (Leads)
 
-- (void)getLeadsListingWithCompletionHandler:(HTTPRequestCompletionBlock)completionHandler;
-
+- (void)getLeadsListingWithPageNumber:(NSNumber *)number
+                             pageSize:(NSNumber *)size
+                    completionHandler:(HTTPRequestCompletionBlock)completionHandler;
 
 @end

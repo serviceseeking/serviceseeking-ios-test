@@ -33,7 +33,7 @@ static NSString *urlEncode(id object) {
         NSString *part = [NSString stringWithFormat: @"%@=%@", urlEncode(key), urlEncode(value)];
         [parts addObject: part];
     }
-    return [[parts componentsJoinedByString: @"&"] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    return [parts componentsJoinedByString: @"&"];
 }
 
 @end

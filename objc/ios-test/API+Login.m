@@ -18,7 +18,7 @@
     NSDictionary *typeAndAttributes = @{kType: @"user_sessions", kAttributes: usernameAndPassword};
     NSMutableDictionary *parameters = @{kData: typeAndAttributes}.mutableCopy;
     
-    [self requestWithMethod:@"POST" path:PATH_SIGN_IN parameters:parameters completionHandler:completionHandler];
+    [self POSTPath:PATH_SIGN_IN parameters:parameters completionHandler:completionHandler];
 }
 
 @end

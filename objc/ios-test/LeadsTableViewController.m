@@ -17,10 +17,12 @@
 #import "MBProgressHUD+Loading.h"
 
 static NSString * const segueIDLeadToLeadDetail = @"leadsToLeadDetail";
+static int pageSize = 6;
 
 @interface LeadsTableViewController ()
 
 @property (strong, nonatomic) NSMutableArray *leadArray;
+@property (assign, nonatomic) NSNumber *pageNumber;
 
 @end
 
@@ -29,10 +31,25 @@ static NSString * const segueIDLeadToLeadDetail = @"leadsToLeadDetail";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [MBProgressHUD showLoadingHUDAddedTo:self.tableView labelText:@"Loading" detailLabelText:@"Please wait . . ."];
     self.tableView.tableFooterView = [UIView new];
+    self.pageNumber = @1;
     
-    [[API sharedClient] getLeadsListingWithCompletionHandler:^(NSDictionary *responseDictionary) {
+    [self fetchLeadListing];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Fetch data
+
+- (void)fetchLeadListing {
+    
+    [MBProgressHUD showLoadingHUDAddedTo:self.view labelText:@"Loading" detailLabelText:@"Please wait . . ."];
+    
+    [[API sharedClient] getLeadsListingWithPageNumber:self.pageNumber pageSize:@(pageSize) completionHandler:^(NSDictionary *responseDictionary) {
+        
         NSArray *dataArray = responseDictionary[kData];
         
         for (NSDictionary *dictionary in dataArray) {
@@ -41,15 +58,10 @@ static NSString * const segueIDLeadToLeadDetail = @"leadsToLeadDetail";
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideAllHUDsForView:self.tableView animated:YES];
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             [self.tableView reloadData];
         });
     }];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
@@ -84,6 +96,13 @@ static NSString * const segueIDLeadToLeadDetail = @"leadsToLeadDetail";
         default:
             return nil;
             break;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.row == self.leadArray.count - 1) {
+        [self fetchLeadListing];
     }
 }
 

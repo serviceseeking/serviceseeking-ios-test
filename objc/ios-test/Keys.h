@@ -33,6 +33,9 @@ static NSString * const kFeatured = @"featured";
 #pragma mark  - I
 static NSString * const kId = @"id";
 
+#pragma mark  - L
+static NSString * const kLead_id = @"lead_id";
+
 #pragma mark  - M
 static NSString * const kMeta = @"meta";
 

@@ -9,7 +9,7 @@
 #import "API.h"
 
 #import "Config.h"
-
+#import "Keys.h"
 #import "NSDictionary+Helper.h"
 
 static NSString * const HTTPHeaderAccept = @"application/vnd.api+json; version=1";
@@ -38,27 +38,43 @@ static API *sharedClient;
     return sharedClient;
 }
 
-- (void)requestWithMethod:(NSString *)method path:(NSString *)path
-               parameters:(NSDictionary *)parameters
-        completionHandler:(HTTPRequestCompletionBlock)completionHandler {
+
+- (void)GETPath:(NSString *)path parameters:(NSDictionary *)parameters completionHandler:(HTTPRequestCompletionBlock)completionHandler {
     
-    self.apiRequest.HTTPMethod = method;
+    self.apiRequest.HTTPMethod = @"GET";
+    NSMutableString *URLString = [[NSMutableString alloc] initWithFormat:@"%@%@", URL_STAGING, path];
+
+    if (parameters.count) {
+        [URLString appendFormat:@"?%@", [parameters urlEncodedString]];
+    } else {
+        self.apiRequest.HTTPBody = [parameters toData];
+    }
+    self.apiRequest.URL = [NSURL URLWithString:URLString];
+    [self startTaskWithCompletionHandler:completionHandler];
+}
+
+- (void)POSTPath:(NSString *)path parameters:(NSDictionary *)parameters completionHandler:(HTTPRequestCompletionBlock)completionHandler {
+    
+    self.apiRequest.HTTPMethod = @"POST";
+    parameters.count ? self.apiRequest.HTTPBody = [parameters toData]: nil;
     self.apiRequest.URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", URL_STAGING, path]];
-    self.apiRequest.HTTPBody = [parameters toData];
-    
+    [self startTaskWithCompletionHandler:completionHandler];
+}
+
+- (void)startTaskWithCompletionHandler:(HTTPRequestCompletionBlock)completionHandler {
     [[[NSURLSession sharedSession] dataTaskWithRequest:self.apiRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
         if (data == nil) {
 #if PRINT_RESPONSE == 1
-            NSLog(@"\nURL: %@ \nMETHOD: %@ \nPARAMS: %@ \nERROR: %@",
-                  self.apiRequest.URL, self.apiRequest.HTTPMethod, parameters, error);
+            NSLog(@"\nURL: %@ \nMETHOD: %@ \nERROR: %@",
+                  self.apiRequest.URL, self.apiRequest.HTTPMethod, error);
 #endif
             completionHandler(nil);
         } else {
             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
 #if PRINT_RESPONSE == 1
-            NSLog(@"\nURL: %@ \nMETHOD: %@ \nPARAMS: %@ \nRESPONSE: %@",
-                  self.apiRequest.URL, self.apiRequest.HTTPMethod, parameters, responseDictionary);
+            NSLog(@"\nURL: %@ \nMETHOD: %@ \nRESPONSE: %@",
+                  self.apiRequest.URL, self.apiRequest.HTTPMethod, responseDictionary);
 #endif
             completionHandler(responseDictionary);
         }

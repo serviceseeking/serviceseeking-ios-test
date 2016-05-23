@@ -7,8 +7,10 @@
 //
 
 #import "LeadDetailViewController.h"
-#import "Lead.h"
 
+#import "API.h"
+#import "Lead.h"
+#import "MBProgressHUD+Loading.h"
 #import "NSString+Helper.h"
 
 @interface LeadDetailViewController ()
@@ -36,6 +38,15 @@
     self.jobDescriptionLabel.text = self.lead.desc;
     self.suburbanNameLabel.text = self.lead.suburbName;
     self.userNameLabel.text = self.lead.userName;
+    
+//    [MBProgressHUD showLoadingHUDAddedTo:self.view labelText:@"Loading" detailLabelText:@"Please wait . . ."];
+//    
+//    [[API sharedClient] getLeadWithID:@6 completionHandler:^(NSDictionary *responseDictionary) {
+//    
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//        });
+//    }];
 }
 
 #pragma mark - Days and hours remaining
