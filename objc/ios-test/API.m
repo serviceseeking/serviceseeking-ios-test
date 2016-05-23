@@ -95,7 +95,7 @@ static API *sharedClient;
      }] resume];
 }
 
-#pragma mark - Token
+#pragma mark - Token Handler
 
 - (NSString *)extractTokenFromDictionary:(NSDictionary *)dict {
     

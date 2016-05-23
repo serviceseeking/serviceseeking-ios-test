@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1485554D1CF28F85007F34F5 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1485554C1CF28F85007F34F5 /* LoginViewController.m */; };
+		148555501CF291AA007F34F5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1485554F1CF291AA007F34F5 /* User.m */; };
 		14CADC2B1CF2809400DE176A /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CADC2A1CF2809400DE176A /* API.m */; };
 		14CADC2E1CF2813100DE176A /* NSDictionary+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CADC2D1CF2813100DE176A /* NSDictionary+Helper.m */; };
 		D1A7F4611C4DBF8F009511FE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A7F4601C4DBF8F009511FE /* main.m */; };
@@ -38,6 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1485554B1CF28F85007F34F5 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		1485554C1CF28F85007F34F5 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		1485554E1CF291AA007F34F5 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		1485554F1CF291AA007F34F5 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		14CADC291CF2809400DE176A /* API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = API.h; sourceTree = "<group>"; };
 		14CADC2A1CF2809400DE176A /* API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = API.m; sourceTree = "<group>"; };
 		14CADC2C1CF2813100DE176A /* NSDictionary+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Helper.h"; sourceTree = "<group>"; };
@@ -89,6 +95,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		148555511CF291AE007F34F5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1485554E1CF291AA007F34F5 /* User.h */,
+				1485554F1CF291AA007F34F5 /* User.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		148555521CF291BB007F34F5 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				14CADC291CF2809400DE176A /* API.h */,
+				14CADC2A1CF2809400DE176A /* API.m */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		148555561CF2923D007F34F5 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D1A7F4651C4DBF8F009511FE /* ViewController.h */,
+				D1A7F4661C4DBF8F009511FE /* ViewController.m */,
+				1485554B1CF28F85007F34F5 /* LoginViewController.h */,
+				1485554C1CF28F85007F34F5 /* LoginViewController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
 		14CADC311CF281B300DE176A /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,14 +166,13 @@
 			isa = PBXGroup;
 			children = (
 				14CADC321CF281F600DE176A /* Config.h */,
-				D1A7F4621C4DBF8F009511FE /* AppDelegate.h */,
-				D1A7F4631C4DBF8F009511FE /* AppDelegate.m */,
-				D1A7F4651C4DBF8F009511FE /* ViewController.h */,
-				D1A7F4661C4DBF8F009511FE /* ViewController.m */,
-				14CADC291CF2809400DE176A /* API.h */,
-				14CADC2A1CF2809400DE176A /* API.m */,
 				14CADC331CF284EB00DE176A /* Constant */,
 				14CADC311CF281B300DE176A /* Category */,
+				148555521CF291BB007F34F5 /* API */,
+				148555511CF291AE007F34F5 /* Model */,
+				148555561CF2923D007F34F5 /* ViewController */,
+				D1A7F4621C4DBF8F009511FE /* AppDelegate.h */,
+				D1A7F4631C4DBF8F009511FE /* AppDelegate.m */,
 				D1A7F4681C4DBF8F009511FE /* Main.storyboard */,
 				D1A7F46E1C4DBF8F009511FE /* Assets.xcassets */,
 				D1A7F4701C4DBF8F009511FE /* LaunchScreen.storyboard */,
@@ -305,10 +339,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				148555501CF291AA007F34F5 /* User.m in Sources */,
 				14CADC2E1CF2813100DE176A /* NSDictionary+Helper.m in Sources */,
 				D1A7F4671C4DBF8F009511FE /* ViewController.m in Sources */,
 				D1A7F4641C4DBF8F009511FE /* AppDelegate.m in Sources */,
 				D1A7F4611C4DBF8F009511FE /* main.m in Sources */,
+				1485554D1CF28F85007F34F5 /* LoginViewController.m in Sources */,
 				D1A7F46D1C4DBF8F009511FE /* ios_test.xcdatamodeld in Sources */,
 				14CADC2B1CF2809400DE176A /* API.m in Sources */,
 			);

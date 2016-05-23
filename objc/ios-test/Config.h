@@ -10,5 +10,6 @@
 #define Config_h
 
 #define PRINT_RESPONSE 1 // set value to 1 if you wish to log network call response, else set to 0
+#define DEBUG_MODE 1
 
 #endif /* Config_h */
