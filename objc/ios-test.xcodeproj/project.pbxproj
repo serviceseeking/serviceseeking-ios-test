@@ -11,11 +11,11 @@
 		148555501CF291AA007F34F5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1485554F1CF291AA007F34F5 /* User.m */; };
 		14AC33E21CF2D3EF00405071 /* LeadsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AC33E11CF2D3EF00405071 /* LeadsTableViewController.m */; };
 		14AC33E51CF2D71F00405071 /* Lead.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AC33E41CF2D71F00405071 /* Lead.m */; };
+		14AC33E81CF2F1B900405071 /* LeadDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AC33E71CF2F1B900405071 /* LeadDetailViewController.m */; };
 		14CADC2B1CF2809400DE176A /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CADC2A1CF2809400DE176A /* API.m */; };
 		14CADC2E1CF2813100DE176A /* NSDictionary+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CADC2D1CF2813100DE176A /* NSDictionary+Helper.m */; };
 		D1A7F4611C4DBF8F009511FE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A7F4601C4DBF8F009511FE /* main.m */; };
 		D1A7F4641C4DBF8F009511FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A7F4631C4DBF8F009511FE /* AppDelegate.m */; };
-		D1A7F4671C4DBF8F009511FE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A7F4661C4DBF8F009511FE /* ViewController.m */; };
 		D1A7F46A1C4DBF8F009511FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A7F4681C4DBF8F009511FE /* Main.storyboard */; };
 		D1A7F46D1C4DBF8F009511FE /* ios_test.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D1A7F46B1C4DBF8F009511FE /* ios_test.xcdatamodeld */; };
 		D1A7F46F1C4DBF8F009511FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1A7F46E1C4DBF8F009511FE /* Assets.xcassets */; };
@@ -50,6 +50,8 @@
 		14AC33E11CF2D3EF00405071 /* LeadsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeadsTableViewController.m; sourceTree = "<group>"; };
 		14AC33E31CF2D71F00405071 /* Lead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lead.h; sourceTree = "<group>"; };
 		14AC33E41CF2D71F00405071 /* Lead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lead.m; sourceTree = "<group>"; };
+		14AC33E61CF2F1B900405071 /* LeadDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeadDetailViewController.h; sourceTree = "<group>"; };
+		14AC33E71CF2F1B900405071 /* LeadDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeadDetailViewController.m; sourceTree = "<group>"; };
 		14CADC291CF2809400DE176A /* API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = API.h; sourceTree = "<group>"; };
 		14CADC2A1CF2809400DE176A /* API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = API.m; sourceTree = "<group>"; };
 		14CADC2C1CF2813100DE176A /* NSDictionary+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Helper.h"; sourceTree = "<group>"; };
@@ -61,8 +63,6 @@
 		D1A7F4601C4DBF8F009511FE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1A7F4621C4DBF8F009511FE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D1A7F4631C4DBF8F009511FE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		D1A7F4651C4DBF8F009511FE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		D1A7F4661C4DBF8F009511FE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D1A7F4691C4DBF8F009511FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D1A7F46C1C4DBF8F009511FE /* ios_test.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ios_test.xcdatamodel; sourceTree = "<group>"; };
 		D1A7F46E1C4DBF8F009511FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -124,12 +124,12 @@
 		148555561CF2923D007F34F5 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				D1A7F4651C4DBF8F009511FE /* ViewController.h */,
-				D1A7F4661C4DBF8F009511FE /* ViewController.m */,
 				1485554B1CF28F85007F34F5 /* LoginViewController.h */,
 				1485554C1CF28F85007F34F5 /* LoginViewController.m */,
 				14AC33E01CF2D3EF00405071 /* LeadsTableViewController.h */,
 				14AC33E11CF2D3EF00405071 /* LeadsTableViewController.m */,
+				14AC33E61CF2F1B900405071 /* LeadDetailViewController.h */,
+				14AC33E71CF2F1B900405071 /* LeadDetailViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -353,8 +353,8 @@
 				14AC33E51CF2D71F00405071 /* Lead.m in Sources */,
 				14AC33E21CF2D3EF00405071 /* LeadsTableViewController.m in Sources */,
 				14CADC2E1CF2813100DE176A /* NSDictionary+Helper.m in Sources */,
-				D1A7F4671C4DBF8F009511FE /* ViewController.m in Sources */,
 				D1A7F4641C4DBF8F009511FE /* AppDelegate.m in Sources */,
+				14AC33E81CF2F1B900405071 /* LeadDetailViewController.m in Sources */,
 				D1A7F4611C4DBF8F009511FE /* main.m in Sources */,
 				1485554D1CF28F85007F34F5 /* LoginViewController.m in Sources */,
 				D1A7F46D1C4DBF8F009511FE /* ios_test.xcdatamodeld in Sources */,
