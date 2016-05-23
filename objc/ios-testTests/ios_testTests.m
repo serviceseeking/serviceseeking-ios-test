@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "API.h"
 
 @interface ios_testTests : XCTestCase
 
@@ -28,6 +29,7 @@
     // This is an example of a functional test case.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
 }
+
 
 - (void)testPerformanceExample {
     // This is an example of a performance test case.
