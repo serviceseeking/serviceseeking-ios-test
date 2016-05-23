@@ -7,10 +7,12 @@
 //
 
 #import "LoginViewController.h"
-#import "Config.h"
 
 #import "API.h"
+#import "Config.h"
 #import "User.h"
+
+#import "MBProgressHUD+Loading.h"
 
 static NSString * const testEmail = @"test_business@serviceseeking.com.au";
 static NSString * const testPassword = @"123123";
@@ -39,12 +41,15 @@ static NSString * const segueIDLoginToLeads = @"loginToLeads";
     
     [self.view endEditing:YES];
     
+    [MBProgressHUD showLoadingHUDAddedTo:self.view labelText:@"Log in" detailLabelText:@"Please wait . . ."];
+    
     [[API sharedClient] loginWithUsername:self.usernameTextField.text password:self.passwordTextField.text completionHandler:^(NSDictionary *responseDictionary) {
         
         [[User sharedUserInstance] updateUserDataWithDictionary:responseDictionary];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-           [self performSegueWithIdentifier:segueIDLoginToLeads sender:nil];
+            [MBProgressHUD hideAllHUDsForView:sender animated:YES];
+            [self performSegueWithIdentifier:segueIDLoginToLeads sender:nil];
         });
         
     }];

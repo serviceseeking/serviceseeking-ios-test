@@ -5,6 +5,9 @@
 
 target 'ios-test' do
 
+pod 'MBProgressHUD'
+pod 'SWRevealViewController'
+
 end
 
 target 'ios-testTests' do
