@@ -10,6 +10,7 @@
 #import "Config.h"
 
 #import "API.h"
+#import "User.h"
 
 static NSString * const testEmail = @"test_business@serviceseeking.com.au";
 static NSString * const testPassword = @"123123";
@@ -30,6 +31,7 @@ static NSString * const testPassword = @"123123";
     self.usernameTextField.text = testEmail;
     self.passwordTextField.text = testPassword;
 #endif
+    
 }
 
 - (IBAction)loginButtonClicked:(UIButton *)sender {
@@ -37,8 +39,8 @@ static NSString * const testPassword = @"123123";
     [self.view endEditing:YES];
     
     [[API sharedClient] loginWithUsername:self.usernameTextField.text password:self.passwordTextField.text completionHandler:^(NSDictionary *responseDictionary) {
-
         
+        [[User sharedUserInstance] updateUserDataWithDictionary:responseDictionary];
         
     }];
 }

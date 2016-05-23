@@ -12,6 +12,8 @@
 #import "URL.h"
 #import "Keys.h"
 
+#import "User.h"
+
 #import "NSDictionary+Helper.h"
 
 static NSString * const HTTPHeaderAccept = @"application/vnd.api+json; version=1";
@@ -23,7 +25,6 @@ static API *sharedClient;
 @interface API ()
 
 @property (strong, nonatomic) NSMutableURLRequest *apiRequest;
-@property (strong, nonatomic) NSString *token;
 
 @end
 
@@ -85,7 +86,6 @@ static API *sharedClient;
              completionHandler(nil);
          } else {
              NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-             self.token = [sharedClient extractTokenFromDictionary:responseDictionary];
     #if PRINT_RESPONSE == 1
              NSLog(@"\nURL: %@ \nMETHOD: %@ \nPARAMS: %@ \nRESPONSE: %@",
                    self.apiRequest.URL, self.apiRequest.HTTPMethod, parameters, responseDictionary);
@@ -106,11 +106,7 @@ static API *sharedClient;
 }
 
 - (void)includeToken {
-    [self.apiRequest setValue:[NSString stringWithFormat:@"%@, Token token=%@", HTTPHeaderAuthorization, sharedClient.token] forHTTPHeaderField:@"Authorization"];
-}
-
-- (void)clearToken {
-    self.token = nil;
+    [self.apiRequest setValue:[NSString stringWithFormat:@"%@, Token token=%@", HTTPHeaderAuthorization, [User sharedUserInstance].token] forHTTPHeaderField:@"Authorization"];
 }
 
 @end

@@ -10,4 +10,17 @@
 
 @interface User : NSObject
 
++ (instancetype)sharedUserInstance;
+
+@property (strong, nonatomic, readonly) NSString *createdAt;
+@property (strong, nonatomic, readonly) NSString *email;
+@property (strong, nonatomic, readonly) NSString *name;
+@property (strong, nonatomic, readonly) NSString *phone;
+@property (strong, nonatomic, readonly) NSString *status;
+@property (strong, nonatomic, readonly) NSString *updatedAt;
+@property (strong, nonatomic, readonly) NSString *token;
+
+- (void)updateUserDataWithDictionary:(NSDictionary *)dictionary;
++ (void)clearSharedUserInstance;
+
 @end
