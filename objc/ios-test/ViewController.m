@@ -18,6 +18,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [[API sharedClient] loginWithUsername:@"test_business@serviceseeking.com.au" password:@"123123" completionHandler:^(NSDictionary *responseDictionary) {
+       
+        [[API sharedClient] getLeadsListingWithCompletionHandler:^(NSDictionary *responseDictionary) {
+            
+        }];
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

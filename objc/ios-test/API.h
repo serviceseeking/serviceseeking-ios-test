@@ -18,4 +18,6 @@ typedef void(^HTTPRequestCompletionBlock)(NSDictionary *responseDictionary);
                  password:(NSString *)password
         completionHandler:(HTTPRequestCompletionBlock)completionHandler;
 
+- (void)getLeadsListingWithCompletionHandler:(HTTPRequestCompletionBlock)completionHandler;
+
 @end

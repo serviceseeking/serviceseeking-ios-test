@@ -15,4 +15,8 @@ static NSString * const URL_STAGING = @"https://staging.serviceseeking.com.au";
 // SIGN IN
 static NSString * const PATH_SIGN_IN = @"/users/sign_in";
 
+// LEADS
+
+static NSString * const PATH_LEADS = @"/leads";
+
 #endif /* URL_h */

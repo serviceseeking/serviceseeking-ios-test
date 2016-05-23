@@ -18,12 +18,12 @@ static NSString * const HTTPHeaderAccept = @"application/vnd.api+json; version=1
 static NSString * const HTTPHeaderAuthorization = @"Basic c3NzdGFnaW5nOnNzVDNzdDFuZyE=";
 static NSString * const HTTPHeaderContentType = @"application/vnd.api+json";
 
-
 static API *sharedClient;
 
 @interface API ()
 
 @property (strong, nonatomic) NSMutableURLRequest *apiRequest;
+@property (strong, nonatomic) NSString *token;
 
 @end
 
@@ -54,6 +54,13 @@ static API *sharedClient;
     [self requestWithMethod:@"POST" path:PATH_SIGN_IN parameters:parameters completionHandler:completionHandler];
 }
 
+#pragma mark - Leads
+
+- (void)getLeadsListingWithCompletionHandler:(HTTPRequestCompletionBlock)completionHandler {
+    [self includeToken];
+    [self requestWithMethod:@"GET" path:PATH_LEADS parameters:nil completionHandler:completionHandler];
+}
+
 #pragma mark - Private methods
 
 - (void)setRequestHeaders {
@@ -78,6 +85,7 @@ static API *sharedClient;
              completionHandler(nil);
          } else {
              NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+             self.token = [sharedClient extractTokenFromDictionary:responseDictionary];
     #if PRINT_RESPONSE == 1
              NSLog(@"\nURL: %@ \nMETHOD: %@ \nPARAMS: %@ \nRESPONSE: %@",
                    self.apiRequest.URL, self.apiRequest.HTTPMethod, parameters, responseDictionary);
@@ -85,6 +93,24 @@ static API *sharedClient;
              completionHandler(responseDictionary);
          }
      }] resume];
+}
+
+#pragma mark - Token
+
+- (NSString *)extractTokenFromDictionary:(NSDictionary *)dict {
+    
+    if (dict && dict[kMeta][kToken]) {
+        return dict[kMeta][kToken];
+    }
+    return nil;
+}
+
+- (void)includeToken {
+    [self.apiRequest setValue:[NSString stringWithFormat:@"%@, Token token=%@", HTTPHeaderAuthorization, sharedClient.token] forHTTPHeaderField:@"Authorization"];
+}
+
+- (void)clearToken {
+    self.token = nil;
 }
 
 @end

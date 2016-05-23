@@ -12,7 +12,9 @@
 static NSString * const kAttributes = @"attributes";
 static NSString * const kData = @"data";
 static NSString * const kEmail = @"email";
+static NSString * const kMeta = @"meta";
 static NSString * const kPassword = @"password";
+static NSString * const kToken = @"token";
 static NSString * const kType = @"type";
 
 #endif /* Keys_h */
