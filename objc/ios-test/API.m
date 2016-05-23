@@ -83,6 +83,10 @@ static API *sharedClient;
     [[[NSURLSession sharedSession] dataTaskWithRequest:self.apiRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                                          
          if (data == nil) {
+    #if PRINT_RESPONSE == 1
+             NSLog(@"\nURL: %@ \nMETHOD: %@ \nPARAMS: %@ \nERROR: %@",
+                   self.apiRequest.URL, self.apiRequest.HTTPMethod, parameters, error);
+    #endif
              completionHandler(nil);
          } else {
              NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
