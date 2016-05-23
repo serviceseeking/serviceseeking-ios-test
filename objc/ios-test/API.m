@@ -78,7 +78,7 @@ static API *sharedClient;
     
     self.apiRequest.HTTPMethod = method;
     self.apiRequest.URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", URL_STAGING, path]];
-    self.apiRequest.HTTPBody = [parameters convertToData];
+    self.apiRequest.HTTPBody = [parameters toData];
     
     [[[NSURLSession sharedSession] dataTaskWithRequest:self.apiRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                                          

@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Lead;
+
 @interface LeadDetailViewController : UIViewController
+
+@property (strong, nonatomic) Lead *lead;
 
 @end

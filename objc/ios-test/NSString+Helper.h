@@ -1,5 +1,5 @@
 //
-//  NSDictionary+Helper.h
+//  NSString+Helper.h
 //  ios-test
 //
 //  Created by Patricia Marie Cesar on 5/23/16.
@@ -8,10 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSDictionary (Helper)
+@interface NSString (Helper)
 
-- (NSData *)toData;
-
-- (NSString*)urlEncodedString;
+- (NSDate *)toDate;
 
 @end

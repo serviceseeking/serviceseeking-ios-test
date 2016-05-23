@@ -19,7 +19,7 @@ static NSString *urlEncode(id object) {
 
 @implementation NSDictionary (Helper)
 
-- (NSData *)convertToData {
+- (NSData *)toData {
     NSError *error;
     NSData *postData = [NSJSONSerialization dataWithJSONObject:self options:0 error:&error];
     return postData;

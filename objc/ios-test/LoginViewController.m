@@ -42,7 +42,11 @@ static NSString * const segueIDLoginToLeads = @"loginToLeads";
     [[API sharedClient] loginWithUsername:self.usernameTextField.text password:self.passwordTextField.text completionHandler:^(NSDictionary *responseDictionary) {
         
         [[User sharedUserInstance] updateUserDataWithDictionary:responseDictionary];
-        [self performSegueWithIdentifier:segueIDLoginToLeads sender:nil];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+           [self performSegueWithIdentifier:segueIDLoginToLeads sender:nil];
+        });
+        
     }];
 }
 

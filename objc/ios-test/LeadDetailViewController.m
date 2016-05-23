@@ -7,8 +7,19 @@
 //
 
 #import "LeadDetailViewController.h"
+#import "Lead.h"
+
+#import "NSString+Helper.h"
 
 @interface LeadDetailViewController ()
+
+@property (weak, nonatomic) IBOutlet UILabel *daysLeftLabel;
+@property (weak, nonatomic) IBOutlet UILabel *jobNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *urgentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *jobDescriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *suburbanNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *biddingEndDate;
 
 @end
 
@@ -16,22 +27,46 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.title = self.lead.name;
+    
+    self.biddingEndDate.text = [NSDateFormatter localizedStringFromDate:[self.lead.biddingClosesOn toDate] dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterShortStyle];
+    self.daysLeftLabel.text = [self numberOfDaysAndHoursLeft];
+    self.jobNameLabel.text = self.lead.name;
+    self.urgentLabel.hidden = !self.lead.isUrgent;
+    self.jobDescriptionLabel.text = self.lead.desc;
+    self.suburbanNameLabel.text = self.lead.suburbName;
+    self.userNameLabel.text = self.lead.userName;
+}
+
+#pragma mark - Days and hours remaining
+
+- (NSString *)numberOfDaysAndHoursLeft {
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay fromDate:[NSDate date] toDate:[self.lead.biddingClosesOn toDate] options:0];
+    NSInteger days = components.day;
+    NSInteger hours = days % 24;
+    
+    NSMutableString *daysRemaining = [[NSMutableString alloc] init];
+    
+    if (days > 0) {
+        [daysRemaining appendFormat:@"%ld day", (long)days];
+        
+        if (days > 1) {
+            [daysRemaining appendString:@"s"];
+        }
+    }
+    if (hours > 0) {
+        [daysRemaining appendFormat:@" %ld hour", (long)hours];
+        
+        if (hours > 1) {
+            [daysRemaining appendString:@"s"];
+        }
+    }
+    return daysRemaining.copy;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

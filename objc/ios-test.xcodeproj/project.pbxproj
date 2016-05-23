@@ -12,6 +12,7 @@
 		14AC33E21CF2D3EF00405071 /* LeadsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AC33E11CF2D3EF00405071 /* LeadsTableViewController.m */; };
 		14AC33E51CF2D71F00405071 /* Lead.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AC33E41CF2D71F00405071 /* Lead.m */; };
 		14AC33E81CF2F1B900405071 /* LeadDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AC33E71CF2F1B900405071 /* LeadDetailViewController.m */; };
+		14AC33EB1CF3222500405071 /* NSString+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AC33EA1CF3222500405071 /* NSString+Helper.m */; };
 		14CADC2B1CF2809400DE176A /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CADC2A1CF2809400DE176A /* API.m */; };
 		14CADC2E1CF2813100DE176A /* NSDictionary+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CADC2D1CF2813100DE176A /* NSDictionary+Helper.m */; };
 		D1A7F4611C4DBF8F009511FE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A7F4601C4DBF8F009511FE /* main.m */; };
@@ -52,6 +53,8 @@
 		14AC33E41CF2D71F00405071 /* Lead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lead.m; sourceTree = "<group>"; };
 		14AC33E61CF2F1B900405071 /* LeadDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeadDetailViewController.h; sourceTree = "<group>"; };
 		14AC33E71CF2F1B900405071 /* LeadDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeadDetailViewController.m; sourceTree = "<group>"; };
+		14AC33E91CF3222500405071 /* NSString+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Helper.h"; sourceTree = "<group>"; };
+		14AC33EA1CF3222500405071 /* NSString+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Helper.m"; sourceTree = "<group>"; };
 		14CADC291CF2809400DE176A /* API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = API.h; sourceTree = "<group>"; };
 		14CADC2A1CF2809400DE176A /* API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = API.m; sourceTree = "<group>"; };
 		14CADC2C1CF2813100DE176A /* NSDictionary+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Helper.h"; sourceTree = "<group>"; };
@@ -139,6 +142,8 @@
 			children = (
 				14CADC2C1CF2813100DE176A /* NSDictionary+Helper.h */,
 				14CADC2D1CF2813100DE176A /* NSDictionary+Helper.m */,
+				14AC33E91CF3222500405071 /* NSString+Helper.h */,
+				14AC33EA1CF3222500405071 /* NSString+Helper.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -359,6 +364,7 @@
 				1485554D1CF28F85007F34F5 /* LoginViewController.m in Sources */,
 				D1A7F46D1C4DBF8F009511FE /* ios_test.xcdatamodeld in Sources */,
 				14CADC2B1CF2809400DE176A /* API.m in Sources */,
+				14AC33EB1CF3222500405071 /* NSString+Helper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
