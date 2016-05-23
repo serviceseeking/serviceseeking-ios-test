@@ -90,8 +90,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clearsContextBeforeDrawing="NO" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="leadCellIdentifier" textLabel="ry0-1Y-0pv" detailTextLabel="2bu-1R-gbo" rowHeight="81" style="IBUITableViewCellStyleSubtitle" id="vdC-jm-nDz">
-                                <rect key="frame" x="0.0" y="92" width="600" height="81"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="accountCellIdentifier" textLabel="cpU-hr-HAK" detailTextLabel="dJr-cE-HZt" rowHeight="85" style="IBUITableViewCellStyleSubtitle" id="MPs-Yd-7Zr">
+                                <rect key="frame" x="0.0" y="92" width="600" height="85"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MPs-Yd-7Zr" id="Yg9-pu-ag8">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="84"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="cpU-hr-HAK">
+                                            <rect key="frame" x="15" y="22" width="39" height="24"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="dJr-cE-HZt">
+                                            <rect key="frame" x="15" y="46" width="38" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="0.48350401182432434" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.058823529409999999" green="0.38431372549999998" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </tableViewCell>
+                            <tableViewCell clearsContextBeforeDrawing="NO" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="leadCellIdentifier" textLabel="ry0-1Y-0pv" detailTextLabel="2bu-1R-gbo" rowHeight="81" style="IBUITableViewCellStyleSubtitle" id="vdC-jm-nDz">
+                                <rect key="frame" x="0.0" y="177" width="600" height="81"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vdC-jm-nDz" id="zlr-1F-DSi">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="80"/>
@@ -113,11 +140,15 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <connections>
                                     <segue destination="lwr-xM-GWA" kind="show" identifier="leadsToLeadDetail" id="NVm-rb-RlZ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="alwaysBounceVertical" value="NO"/>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <outlet property="dataSource" destination="9dv-fa-snD" id="3XK-Vd-4eJ"/>
                             <outlet property="delegate" destination="9dv-fa-snD" id="9S2-bd-ELx"/>
@@ -339,7 +370,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Q0-W4-tdQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2505" y="1095"/>
+            <point key="canvasLocation" x="2526" y="1095"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PNN-SH-UPK">
