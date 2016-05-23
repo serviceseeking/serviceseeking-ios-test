@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "URL.h"
+#import "Keys.h"
 
 typedef void(^HTTPRequestCompletionBlock)(NSDictionary *responseDictionary);
 
@@ -14,10 +16,10 @@ typedef void(^HTTPRequestCompletionBlock)(NSDictionary *responseDictionary);
 
 + (instancetype)sharedClient;
 
-- (void)loginWithUsername:(NSString *)username
-                 password:(NSString *)password
-        completionHandler:(HTTPRequestCompletionBlock)completionHandler;
+- (void)includeToken:(NSString *)token;
 
-- (void)getLeadsListingWithCompletionHandler:(HTTPRequestCompletionBlock)completionHandler;
+- (void)requestWithMethod:(NSString *)method path:(NSString *)path
+               parameters:(NSDictionary *)parameters
+        completionHandler:(HTTPRequestCompletionBlock)completionHandler;
 
 @end

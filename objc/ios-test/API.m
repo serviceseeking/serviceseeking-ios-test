@@ -9,10 +9,6 @@
 #import "API.h"
 
 #import "Config.h"
-#import "URL.h"
-#import "Keys.h"
-
-#import "User.h"
 
 #import "NSDictionary+Helper.h"
 
@@ -42,24 +38,31 @@ static API *sharedClient;
     return sharedClient;
 }
 
-#pragma mark - Login
-
-- (void)loginWithUsername:(NSString *)username
-                 password:(NSString *)password
+- (void)requestWithMethod:(NSString *)method path:(NSString *)path
+               parameters:(NSDictionary *)parameters
         completionHandler:(HTTPRequestCompletionBlock)completionHandler {
     
-    NSDictionary *usernameAndPassword = @{kEmail: username, kPassword: password};
-    NSDictionary *typeAndAttributes = @{kType: @"user_sessions", kAttributes: usernameAndPassword};
-    NSMutableDictionary *parameters = @{kData: typeAndAttributes}.mutableCopy;
+    self.apiRequest.HTTPMethod = method;
+    self.apiRequest.URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", URL_STAGING, path]];
+    self.apiRequest.HTTPBody = [parameters toData];
     
-    [self requestWithMethod:@"POST" path:PATH_SIGN_IN parameters:parameters completionHandler:completionHandler];
-}
-
-#pragma mark - Leads
-
-- (void)getLeadsListingWithCompletionHandler:(HTTPRequestCompletionBlock)completionHandler {
-    [self includeToken];
-    [self requestWithMethod:@"GET" path:PATH_LEADS parameters:nil completionHandler:completionHandler];
+    [[[NSURLSession sharedSession] dataTaskWithRequest:self.apiRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if (data == nil) {
+#if PRINT_RESPONSE == 1
+            NSLog(@"\nURL: %@ \nMETHOD: %@ \nPARAMS: %@ \nERROR: %@",
+                  self.apiRequest.URL, self.apiRequest.HTTPMethod, parameters, error);
+#endif
+            completionHandler(nil);
+        } else {
+            NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+#if PRINT_RESPONSE == 1
+            NSLog(@"\nURL: %@ \nMETHOD: %@ \nPARAMS: %@ \nRESPONSE: %@",
+                  self.apiRequest.URL, self.apiRequest.HTTPMethod, parameters, responseDictionary);
+#endif
+            completionHandler(responseDictionary);
+        }
+    }] resume];
 }
 
 #pragma mark - Private methods
@@ -72,33 +75,6 @@ static API *sharedClient;
     
 }
 
-- (void)requestWithMethod:(NSString *)method path:(NSString *)path
-               parameters:(NSDictionary *)parameters
-        completionHandler:(HTTPRequestCompletionBlock)completionHandler{
-    
-    self.apiRequest.HTTPMethod = method;
-    self.apiRequest.URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", URL_STAGING, path]];
-    self.apiRequest.HTTPBody = [parameters toData];
-    
-    [[[NSURLSession sharedSession] dataTaskWithRequest:self.apiRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                                         
-         if (data == nil) {
-    #if PRINT_RESPONSE == 1
-             NSLog(@"\nURL: %@ \nMETHOD: %@ \nPARAMS: %@ \nERROR: %@",
-                   self.apiRequest.URL, self.apiRequest.HTTPMethod, parameters, error);
-    #endif
-             completionHandler(nil);
-         } else {
-             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    #if PRINT_RESPONSE == 1
-             NSLog(@"\nURL: %@ \nMETHOD: %@ \nPARAMS: %@ \nRESPONSE: %@",
-                   self.apiRequest.URL, self.apiRequest.HTTPMethod, parameters, responseDictionary);
-    #endif
-             completionHandler(responseDictionary);
-         }
-     }] resume];
-}
-
 #pragma mark - Token Handler
 
 - (NSString *)extractTokenFromDictionary:(NSDictionary *)dict {
@@ -109,8 +85,8 @@ static API *sharedClient;
     return nil;
 }
 
-- (void)includeToken {
-    [self.apiRequest setValue:[NSString stringWithFormat:@"%@, Token token=%@", HTTPHeaderAuthorization, [User sharedUserInstance].token] forHTTPHeaderField:@"Authorization"];
+- (void)includeToken:(NSString *)token {
+    [self.apiRequest setValue:[NSString stringWithFormat:@"%@, Token token=%@", HTTPHeaderAuthorization, token] forHTTPHeaderField:@"Authorization"];
 }
 
 @end

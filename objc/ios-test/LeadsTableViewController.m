@@ -9,10 +9,9 @@
 #import "LeadsTableViewController.h"
 #import "LeadDetailViewController.h"
 
-#import "API.h"
-#import "Keys.h"
-#import "Lead.h"
+#import "API+Leads.h"
 
+#import "Lead.h"
 #import "User.h"
 
 #import "MBProgressHUD+Loading.h"
