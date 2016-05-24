@@ -38,13 +38,13 @@ static User *sharedUserInstance;
 
     if (dictionary != nil) {
         NSDictionary *attributes = dictionary[kData][kAttributes];
-        sharedUserInstance.createdAt = attributes[kCreatedAt] ?: nil;
-        sharedUserInstance.email = attributes[kEmail] ?: nil;
-        sharedUserInstance.name = attributes[kName] ?: nil;
-        sharedUserInstance.phone = attributes[kPhone] ?: nil;
-        sharedUserInstance.status = attributes[kStatus] ?: nil;
-        sharedUserInstance.updatedAt = attributes[kUpdatedAt] ?: nil;
-        sharedUserInstance.token = dictionary[kMeta][kToken] ?: nil;
+        sharedUserInstance.createdAt = attributes[kCreatedAt];
+        sharedUserInstance.email = attributes[kEmail];
+        sharedUserInstance.name = attributes[kName];
+        sharedUserInstance.phone = attributes[kPhone];
+        sharedUserInstance.status = attributes[kStatus];
+        sharedUserInstance.updatedAt = attributes[kUpdatedAt];
+        sharedUserInstance.token = dictionary[kMeta][kToken];
     }
 }
 

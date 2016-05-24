@@ -41,19 +41,19 @@
         leads.ID = data[kId];
         
         NSDictionary *attributes = data[kAttributes];
-        leads.biddingClosesOn = attributes[kBiddingClosesOn] ?: nil;
+        leads.biddingClosesOn = attributes[kBiddingClosesOn];
         leads.canQuote = attributes[kCanQuote] ? YES : NO;
-        leads.createdAt = attributes[kCreatedAt] ?: nil;
-        leads.desc = attributes[kDescription] ?: nil;
-        leads.distanceAway = attributes[kDistanceAway] ?: nil;
+        leads.createdAt = attributes[kCreatedAt];
+        leads.desc = attributes[kDescription];
+        leads.distanceAway = attributes[kDistanceAway];
         leads.featured = attributes[kFeatured] ? NO : YES;
-        leads.name = attributes[kName] ?: nil;
+        leads.name = attributes[kName];
         leads.new = attributes[kNew] ? NO : YES;
         leads.private = attributes[kPrivate] ? NO : YES;
-        leads.suburbName = attributes[kSuburbName] ?: nil;
-        leads.updatedAt = attributes[kUpdatedAt] ?: nil;
+        leads.suburbName = attributes[kSuburbName];
+        leads.updatedAt = attributes[kUpdatedAt];
         leads.urgent = attributes[kUrgent] ? NO : YES;
-        leads.userName = attributes[kUserName] ?: nil;
+        leads.userName = attributes[kUserName];
         leads.withinRange = attributes[kWithinRange] ? NO : YES;
     }
     return leads;

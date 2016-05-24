@@ -26,12 +26,12 @@
     
     APIError *error = [[APIError alloc] init];
     
-    error.code = data[kCode] ?: nil;
-    error.detail = data[kDetail] ?: nil;
-    error.ID = data[kId] ?: nil;
-    error.links = data[kLinks] ?: nil;
-    error.status = data[kStatus] ?: nil;
-    error.title = data[kTitle] ?: nil;
+    error.code = data[kCode];
+    error.detail = data[kDetail];
+    error.ID = data[kId];
+    error.links = data[kLinks];
+    error.status = data[kStatus];
+    error.title = data[kTitle];
     
     return error;
 }
