@@ -10,8 +10,11 @@
 
 #import "Config.h"
 #import "User.h"
+#import "ErrorDisplayManager.h"
+
 #import "API+Login.h"
 #import "MBProgressHUD+Loading.h"
+#import "UIView+Toast.h"
 
 static NSString * const testEmail = @"test_business@serviceseeking.com.au";
 static NSString * const testPassword = @"123123";
@@ -44,21 +47,18 @@ static NSString * const segueIDLoginToLeads = @"loginToLeads";
     
     [[API sharedClient] loginWithUsername:self.usernameTextField.text password:self.passwordTextField.text completionHandler:^(NSDictionary *responseDictionary) {
         
-        [[User sharedUserInstance] updateUserDataWithDictionary:responseDictionary];
-        
         dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideAllHUDsForView:sender animated:YES];
-            [self performSegueWithIdentifier:segueIDLoginToLeads sender:nil];
+            
+           [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            if (responseDictionary[kErrors]) {
+                [[ErrorDisplayManager sharedManager] displayErrorWithDictionary:responseDictionary[kErrors][0] inView:self.view];
+            }
+            else {
+                [[User sharedUserInstance] updateUserDataWithDictionary:responseDictionary];
+                [self performSegueWithIdentifier:segueIDLoginToLeads sender:nil];
+            }
         });
-        
     }];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    if ([segue.identifier isEqualToString:segueIDLoginToLeads]) {
-        
-    }
 }
 
 @end

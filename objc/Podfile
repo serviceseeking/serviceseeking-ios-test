@@ -6,7 +6,7 @@
 target 'ios-test' do
 
 pod 'MBProgressHUD'
-pod 'SWRevealViewController'
+pod 'Toast'
 
 end
 

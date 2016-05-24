@@ -1,13 +1,13 @@
 PODS:
   - MBProgressHUD (0.9.2)
-  - SWRevealViewController (2.3.0)
+  - Toast (3.0)
 
 DEPENDENCIES:
   - MBProgressHUD
-  - SWRevealViewController
+  - Toast
 
 SPEC CHECKSUMS:
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
-  SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
+  Toast: 32c59229abfcf41850162b83bb9259dc84372473
 
 COCOAPODS: 0.39.0

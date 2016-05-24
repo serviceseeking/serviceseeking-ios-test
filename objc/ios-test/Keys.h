@@ -17,15 +17,18 @@ static NSString * const kBiddingClosesOn = @"biddingClosesOn";
 
 #pragma mark  - C
 static NSString * const kCanQuote = @"canQuote";
+static NSString * const kCode = @"code";
 static NSString * const kCreatedAt = @"createdAt";
 
 #pragma mark  - D
 static NSString * const kData = @"data";
+static NSString * const kDetail = @"detail";
 static NSString * const kDescription = @"description";
 static NSString * const kDistanceAway = @"distanceAway";
 
 #pragma mark  - E
 static NSString * const kEmail = @"email";
+static NSString * const kErrors = @"errors";
 
 #pragma mark  - F
 static NSString * const kFeatured = @"featured";
@@ -35,6 +38,7 @@ static NSString * const kId = @"id";
 
 #pragma mark  - L
 static NSString * const kLead_id = @"lead_id";
+static NSString * const kLinks = @"links";
 
 #pragma mark  - M
 static NSString * const kMeta = @"meta";
@@ -57,6 +61,7 @@ static NSString * const kSuburbName = @"suburbName";
 
 #pragma mark  - T
 static NSString * const kTiming = @"timing";
+static NSString * const kTitle = @"title";
 static NSString * const kToken = @"token";
 static NSString * const kType = @"type";
 
