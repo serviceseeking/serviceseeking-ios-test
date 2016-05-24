@@ -10,11 +10,9 @@
 
 #import "Config.h"
 #import "User.h"
-#import "ErrorDisplayManager.h"
-
 #import "API+Login.h"
 #import "MBProgressHUD+Loading.h"
-#import "UIView+Toast.h"
+#import "ErrorDisplayManager.h"
 
 static NSString * const testEmail = @"test_business@serviceseeking.com.au";
 static NSString * const testPassword = @"123123";

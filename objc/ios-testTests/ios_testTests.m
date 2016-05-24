@@ -7,7 +7,6 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "API.h"
 
 @interface ios_testTests : XCTestCase
 
