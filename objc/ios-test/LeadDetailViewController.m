@@ -47,7 +47,7 @@
 #pragma mark - UI
 
 - (void)updateInfoWithLead:(Lead *)lead {
-    self.biddingEndDate.text = [NSDateFormatter localizedStringFromDate:[lead.biddingClosesOn toDate] dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterShortStyle];
+    self.biddingEndDate.text = [NSString stringWithFormat:@"Bidding closes on: %@", [NSDateFormatter localizedStringFromDate:[lead.biddingClosesOn toDate] dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterShortStyle]];
     self.daysLeftLabel.text = [self numberOfDaysAndHoursLeft:[lead.biddingClosesOn toDate]];
     self.jobNameLabel.text = lead.name;
     self.isUrgentLabel.hidden = !lead.isUrgent;
