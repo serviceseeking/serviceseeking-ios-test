@@ -5,6 +5,9 @@
 
 target 'ios-test' do
 
+pod 'MBProgressHUD'
+pod 'Toast'
+
 end
 
 target 'ios-testTests' do
