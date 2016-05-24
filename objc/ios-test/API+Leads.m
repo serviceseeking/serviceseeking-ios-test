@@ -14,7 +14,10 @@
 
 #pragma mark - Leads
 
-- (void)getLeadsListingWithPageNumber:(NSNumber *)number pageSize:(NSNumber *)size completionHandler:(HTTPRequestCompletionBlock)completionHandler {
+- (void)getLeadsListingWithPageNumber:(NSNumber *)number
+                             pageSize:(NSNumber *)size
+                    completionHandler:(HTTPRequestCompletionBlock)completionHandler {
+    
     [self includeToken:[User sharedUserInstance].token];
     
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
@@ -25,7 +28,14 @@
     else {
         parameters = nil;
     }
-    [self GETPath:PATH_LEADS parameters:parameters completionHandler:completionHandler];
+    [self GETPath:PATH_LEADS parameter:parameters completionHandler:completionHandler];
+}
+
+- (void)getLeadWithID:(NSNumber *)ID
+    completionHandler:(HTTPRequestCompletionBlock)completionHandler {
+    
+    [self includeToken:[User sharedUserInstance].token];
+    [self GETPath:PATH_LEADS parameter:ID completionHandler:completionHandler];
 }
 
 @end

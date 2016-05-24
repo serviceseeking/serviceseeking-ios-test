@@ -10,6 +10,8 @@
 
 @interface MBProgressHUD (Loading)
 
-+ (MBProgressHUD *)showLoadingHUDAddedTo:(id)sender labelText:(NSString *)labelText detailLabelText:(NSString *)detailLabelText;
++ (MBProgressHUD *)showLoadingHUDAddedTo:(id)sender
+                               labelText:(NSString *)labelText
+                         detailLabelText:(NSString *)detailLabelText;
 
 @end

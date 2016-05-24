@@ -9,11 +9,9 @@
 #import "LeadsTableViewController.h"
 #import "LeadDetailViewController.h"
 
-#import "API+Leads.h"
-
 #import "Lead.h"
 #import "User.h"
-
+#import "API+Leads.h"
 #import "MBProgressHUD+Loading.h"
 
 static NSString * const segueIDLeadToLeadDetail = @"leadsToLeadDetail";
@@ -32,7 +30,7 @@ static int pageSize = 6;
     [super viewDidLoad];
     
     self.tableView.tableFooterView = [UIView new];
-    self.pageNumber = @1;
+    self.pageNumber = @0;
     
     [self fetchLeadListing];
 }
@@ -46,7 +44,9 @@ static int pageSize = 6;
 
 - (void)fetchLeadListing {
     
-    [MBProgressHUD showLoadingHUDAddedTo:self.view labelText:@"Loading" detailLabelText:@"Please wait . . ."];
+    [MBProgressHUD showLoadingHUDAddedTo:self.navigationController.view labelText:@"Loading" detailLabelText:@"Please wait . . ."];
+    
+    self.pageNumber = [NSNumber numberWithInt:[self.pageNumber intValue] + 1];
     
     [[API sharedClient] getLeadsListingWithPageNumber:self.pageNumber pageSize:@(pageSize) completionHandler:^(NSDictionary *responseDictionary) {
         
@@ -56,9 +56,8 @@ static int pageSize = 6;
             Lead *lead = [[Lead alloc] initWithDataDictionary:dictionary];
             [self.leadArray addObject:lead];
         }
-        
         dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            [MBProgressHUD hideAllHUDsForView:self.navigationController.view animated:YES];
             [self.tableView reloadData];
         });
     }];
@@ -113,7 +112,13 @@ static int pageSize = 6;
     if ([segue.identifier isEqualToString:segueIDLeadToLeadDetail]) {
         NSIndexPath *indexPath = (NSIndexPath *)[self.tableView indexPathForCell:sender];
         LeadDetailViewController *vc = segue.destinationViewController;
-        vc.lead = self.leadArray[indexPath.row];
+        
+        Lead *lead = self.leadArray[indexPath.row];
+        
+        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+        formatter.numberStyle = NSNumberFormatterDecimalStyle;
+        
+        vc.leadID = [formatter numberFromString:lead.ID];
     }
 }
 

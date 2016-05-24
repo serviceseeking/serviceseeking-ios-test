@@ -39,27 +39,44 @@ static API *sharedClient;
 }
 
 
-- (void)GETPath:(NSString *)path parameters:(NSDictionary *)parameters completionHandler:(HTTPRequestCompletionBlock)completionHandler {
+#pragma mark - GET
+
+- (void)GETPath:(NSString *)path
+      parameter:(id)parameter
+completionHandler:(HTTPRequestCompletionBlock)completionHandler {
     
     self.apiRequest.HTTPMethod = @"GET";
+    self.apiRequest.HTTPBody = nil;
+    
     NSMutableString *URLString = [[NSMutableString alloc] initWithFormat:@"%@%@", URL_STAGING, path];
 
-    if (parameters.count) {
-        [URLString appendFormat:@"?%@", [parameters urlEncodedString]];
-    } else {
-        self.apiRequest.HTTPBody = [parameters toData];
+    if ([parameter isKindOfClass:[NSDictionary class]]) {
+         NSDictionary *parameters = [[NSDictionary alloc] initWithDictionary:parameter];
+        if (parameters.count) {
+            [URLString appendFormat:@"?%@", [parameters urlEncodedString]];
+        }
+    }
+    else if ([parameter isKindOfClass:[NSNumber class]]) {
+        NSNumber *ID = parameter;
+        [URLString appendFormat:@"/%@", ID];
     }
     self.apiRequest.URL = [NSURL URLWithString:URLString];
     [self startTaskWithCompletionHandler:completionHandler];
 }
 
-- (void)POSTPath:(NSString *)path parameters:(NSDictionary *)parameters completionHandler:(HTTPRequestCompletionBlock)completionHandler {
+#pragma mark - POST
+
+- (void)POSTPath:(NSString *)path
+      parameters:(NSDictionary *)parameters
+completionHandler:(HTTPRequestCompletionBlock)completionHandler {
     
     self.apiRequest.HTTPMethod = @"POST";
     parameters.count ? self.apiRequest.HTTPBody = [parameters toData]: nil;
     self.apiRequest.URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", URL_STAGING, path]];
     [self startTaskWithCompletionHandler:completionHandler];
 }
+
+#pragma mark - Start task
 
 - (void)startTaskWithCompletionHandler:(HTTPRequestCompletionBlock)completionHandler {
     [[[NSURLSession sharedSession] dataTaskWithRequest:self.apiRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -81,7 +98,7 @@ static API *sharedClient;
     }] resume];
 }
 
-#pragma mark - Private methods
+#pragma mark - Set header values
 
 - (void)setRequestHeaders {
     

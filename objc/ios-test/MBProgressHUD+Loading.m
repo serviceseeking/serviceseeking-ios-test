@@ -10,7 +10,9 @@
 
 @implementation MBProgressHUD (Loading)
 
-+ (MBProgressHUD *)showLoadingHUDAddedTo:(id)sender labelText:(NSString *)labelText detailLabelText:(NSString *)detailLabelText {
++ (MBProgressHUD *)showLoadingHUDAddedTo:(id)sender
+                               labelText:(NSString *)labelText
+                         detailLabelText:(NSString *)detailLabelText {
     [MBProgressHUD hideAllHUDsForView:sender animated:YES];
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:sender animated:YES];
     hud.color = [UIColor colorWithRed:59.0/255.0 green:70.0/255.0 blue:74.0/255.0 alpha:0.7];

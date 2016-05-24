@@ -18,8 +18,12 @@ typedef void(^HTTPRequestCompletionBlock)(NSDictionary *responseDictionary);
 
 - (void)includeToken:(NSString *)token;
 
-- (void)GETPath:(NSString *)path parameters:(NSDictionary *)parameters completionHandler:(HTTPRequestCompletionBlock)completionHandler;
+- (void)GETPath:(NSString *)path
+      parameter:(id)parameter
+completionHandler:(HTTPRequestCompletionBlock)completionHandler;
 
-- (void)POSTPath:(NSString *)path parameters:(NSDictionary *)parameters completionHandler:(HTTPRequestCompletionBlock)completionHandler;
+- (void)POSTPath:(NSString *)path
+      parameters:(NSDictionary *)parameters
+completionHandler:(HTTPRequestCompletionBlock)completionHandler;
 
 @end

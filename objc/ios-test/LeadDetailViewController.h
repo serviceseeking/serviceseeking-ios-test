@@ -12,6 +12,6 @@
 
 @interface LeadDetailViewController : UIViewController
 
-@property (strong, nonatomic) Lead *lead;
+@property (strong, nonatomic) NSNumber *leadID;
 
 @end

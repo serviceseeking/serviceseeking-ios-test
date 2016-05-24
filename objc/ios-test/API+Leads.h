@@ -14,4 +14,7 @@
                              pageSize:(NSNumber *)size
                     completionHandler:(HTTPRequestCompletionBlock)completionHandler;
 
+- (void)getLeadWithID:(NSNumber *)ID
+    completionHandler:(HTTPRequestCompletionBlock)completionHandler;
+
 @end

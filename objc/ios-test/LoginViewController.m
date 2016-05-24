@@ -8,10 +8,9 @@
 
 #import "LoginViewController.h"
 
-#import "API+Login.h"
 #import "Config.h"
 #import "User.h"
-
+#import "API+Login.h"
 #import "MBProgressHUD+Loading.h"
 
 static NSString * const testEmail = @"test_business@serviceseeking.com.au";
