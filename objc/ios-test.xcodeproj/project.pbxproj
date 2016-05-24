@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		145EE42E1CF3DD8F00B0091E /* ErrorDisplayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 145EE42D1CF3DD8F00B0091E /* ErrorDisplayManager.m */; };
+		145EE4311CF3EE6A00B0091E /* APIError.m in Sources */ = {isa = PBXBuildFile; fileRef = 145EE4301CF3EE6A00B0091E /* APIError.m */; };
 		1485554D1CF28F85007F34F5 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1485554C1CF28F85007F34F5 /* LoginViewController.m */; };
 		148555501CF291AA007F34F5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1485554F1CF291AA007F34F5 /* User.m */; };
 		14AC33E21CF2D3EF00405071 /* LeadsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AC33E11CF2D3EF00405071 /* LeadsTableViewController.m */; };
@@ -50,6 +51,8 @@
 /* Begin PBXFileReference section */
 		145EE42C1CF3DD8F00B0091E /* ErrorDisplayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorDisplayManager.h; sourceTree = "<group>"; };
 		145EE42D1CF3DD8F00B0091E /* ErrorDisplayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorDisplayManager.m; sourceTree = "<group>"; };
+		145EE42F1CF3EE6A00B0091E /* APIError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIError.h; sourceTree = "<group>"; };
+		145EE4301CF3EE6A00B0091E /* APIError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIError.m; sourceTree = "<group>"; };
 		1485554B1CF28F85007F34F5 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		1485554C1CF28F85007F34F5 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		1485554E1CF291AA007F34F5 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -146,6 +149,8 @@
 				1485554F1CF291AA007F34F5 /* User.m */,
 				14AC33E31CF2D71F00405071 /* Lead.h */,
 				14AC33E41CF2D71F00405071 /* Lead.m */,
+				145EE42F1CF3EE6A00B0091E /* APIError.h */,
+				145EE4301CF3EE6A00B0091E /* APIError.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -466,6 +471,7 @@
 				D1A7F4611C4DBF8F009511FE /* main.m in Sources */,
 				1485554D1CF28F85007F34F5 /* LoginViewController.m in Sources */,
 				14AC33EE1CF3276800405071 /* MBProgressHUD+Loading.m in Sources */,
+				145EE4311CF3EE6A00B0091E /* APIError.m in Sources */,
 				D1A7F46D1C4DBF8F009511FE /* ios_test.xcdatamodeld in Sources */,
 				14AC33F41CF3342F00405071 /* API+Leads.m in Sources */,
 				14CADC2B1CF2809400DE176A /* API.m in Sources */,

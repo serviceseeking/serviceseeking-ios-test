@@ -13,6 +13,7 @@
 #import "User.h"
 #import "API+Leads.h"
 #import "MBProgressHUD+Loading.h"
+#import "ErrorDisplayManager.h"
 
 static NSString * const segueIDLeadToLeadDetail = @"leadsToLeadDetail";
 static int pageSize = 6;
@@ -43,16 +44,13 @@ static int pageSize = 6;
 #pragma mark - Fetch data
 
 - (void)fetchLeadListing {
-    
     [MBProgressHUD showLoadingHUDAddedTo:self.navigationController.view labelText:@"Loading" detailLabelText:@"Please wait . . ."];
     
     self.pageNumber = [NSNumber numberWithInt:[self.pageNumber intValue] + 1];
     
-    [[API sharedClient] getLeadsListingWithPageNumber:self.pageNumber pageSize:@(pageSize) completionHandler:^(NSDictionary *responseDictionary) {
+    [[API sharedClient] getLeadsListingWithPageNumber:self.pageNumber pageSize:@(pageSize) successBlock:^(NSDictionary *responseDictionary) {
         
-        NSArray *dataArray = responseDictionary[kData];
-        
-        for (NSDictionary *dictionary in dataArray) {
+        for (NSDictionary *dictionary in responseDictionary[kData]) {
             Lead *lead = [[Lead alloc] initWithDataDictionary:dictionary];
             [self.leadArray addObject:lead];
         }
@@ -60,6 +58,14 @@ static int pageSize = 6;
             [MBProgressHUD hideAllHUDsForView:self.navigationController.view animated:YES];
             [self.tableView reloadData];
         });
+        
+    } failBlock:^(APIError *apiError, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideAllHUDsForView:self.navigationController.view animated:YES];
+            (apiError) ? [ErrorDisplayManager displayErrorWithAPIError:apiError inView:self.view] : nil;
+            (error) ? [ErrorDisplayManager displayErrorWithNSError:error inView:self.navigationController.view] : nil;
+        });
+        
     }];
 }
 
@@ -74,7 +80,6 @@ static int pageSize = 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     switch (indexPath.section) {
         case 0: {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountCellIdentifier" forIndexPath:indexPath];
@@ -99,7 +104,6 @@ static int pageSize = 6;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     if (indexPath.row == self.leadArray.count - 1) {
         [self fetchLeadListing];
     }
@@ -125,7 +129,6 @@ static int pageSize = 6;
 #pragma mark - Lazy loading of property/ies
 
 - (NSMutableArray *)leadArray {
-    
     if (!_leadArray) {
         _leadArray = [[NSMutableArray alloc] init];
     }

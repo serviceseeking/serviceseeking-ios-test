@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "URL.h"
 #import "Keys.h"
+#import "APIError.h"
 
-typedef void(^HTTPRequestCompletionBlock)(NSDictionary *responseDictionary);
+typedef void(^NetworkCallSuccessBlock)(NSDictionary *responseDictionary);
+typedef void(^NetworkCallFailBlock)(APIError *apiError, NSError *error);
 
 @interface API : NSObject
 
@@ -20,10 +22,12 @@ typedef void(^HTTPRequestCompletionBlock)(NSDictionary *responseDictionary);
 
 - (void)GETPath:(NSString *)path
       parameter:(id)parameter
-completionHandler:(HTTPRequestCompletionBlock)completionHandler;
+   successBlock:(NetworkCallSuccessBlock)successBlock
+      failBlock:(NetworkCallFailBlock)failBlock;
 
 - (void)POSTPath:(NSString *)path
       parameters:(NSDictionary *)parameters
-completionHandler:(HTTPRequestCompletionBlock)completionHandler;
+    successBlock:(NetworkCallSuccessBlock)successBlock
+       failBlock:(NetworkCallFailBlock)failBlock;
 
 @end

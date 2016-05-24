@@ -9,17 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class APIError;
+
 @interface ErrorDisplayManager : NSObject
 
-@property (strong, nonatomic, readonly) NSNumber *code;
-@property (strong, nonatomic, readonly) NSString *detail;
-@property (strong, nonatomic, readonly) NSString *ID;
-@property (strong, nonatomic, readonly) NSString *links;
-@property (strong, nonatomic, readonly) NSString *status;
-@property (strong, nonatomic, readonly) NSString *title;
++ (void)displayErrorWithAPIError:(APIError *)error inView:(UIView *)view;
 
-+ (instancetype)sharedManager;
-
-- (void)displayErrorWithDictionary:(NSDictionary *)dictionary inView:(UIView *)view;
-
++ (void)displayErrorWithNSError:(NSError *)error inView:(UIView *)view;
+    
 @end

@@ -12,9 +12,11 @@
 
 - (void)getLeadsListingWithPageNumber:(NSNumber *)number
                              pageSize:(NSNumber *)size
-                    completionHandler:(HTTPRequestCompletionBlock)completionHandler;
+                         successBlock:(NetworkCallSuccessBlock)successBlock
+                            failBlock:(NetworkCallFailBlock)failBlock;
 
 - (void)getLeadWithID:(NSNumber *)ID
-    completionHandler:(HTTPRequestCompletionBlock)completionHandler;
+         successBlock:(NetworkCallSuccessBlock)successBlock
+            failBlock:(NetworkCallFailBlock)failBlock;
 
 @end

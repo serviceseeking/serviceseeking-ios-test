@@ -16,7 +16,8 @@
 
 - (void)getLeadsListingWithPageNumber:(NSNumber *)number
                              pageSize:(NSNumber *)size
-                    completionHandler:(HTTPRequestCompletionBlock)completionHandler {
+                         successBlock:(NetworkCallSuccessBlock)successBlock
+                            failBlock:(NetworkCallFailBlock)failBlock {
     
     [self includeToken:[User sharedUserInstance].token];
     
@@ -28,14 +29,15 @@
     else {
         parameters = nil;
     }
-    [self GETPath:PATH_LEADS parameter:parameters completionHandler:completionHandler];
+    [self GETPath:PATH_LEADS parameter:parameters successBlock:successBlock failBlock:failBlock];
 }
 
 - (void)getLeadWithID:(NSNumber *)ID
-    completionHandler:(HTTPRequestCompletionBlock)completionHandler {
+         successBlock:(NetworkCallSuccessBlock)successBlock
+            failBlock:(NetworkCallFailBlock)failBlock {
     
     [self includeToken:[User sharedUserInstance].token];
-    [self GETPath:PATH_LEADS parameter:ID completionHandler:completionHandler];
+    [self GETPath:PATH_LEADS parameter:ID successBlock:successBlock failBlock:failBlock];
 }
 
 @end

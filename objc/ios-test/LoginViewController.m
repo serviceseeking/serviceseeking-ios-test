@@ -30,8 +30,8 @@ static NSString * const segueIDLoginToLeads = @"loginToLeads";
 @implementation LoginViewController
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
+    
 #if DEBUG_MODE == 1
     self.usernameTextField.text = testEmail;
     self.passwordTextField.text = testPassword;
@@ -40,23 +40,21 @@ static NSString * const segueIDLoginToLeads = @"loginToLeads";
 }
 
 - (IBAction)loginButtonClicked:(UIButton *)sender {
-    
     [self.view endEditing:YES];
     
     [MBProgressHUD showLoadingHUDAddedTo:self.view labelText:@"Log in" detailLabelText:@"Please wait . . ."];
     
-    [[API sharedClient] loginWithUsername:self.usernameTextField.text password:self.passwordTextField.text completionHandler:^(NSDictionary *responseDictionary) {
-        
+    [[API sharedClient] loginWithUsername:self.usernameTextField.text password:self.passwordTextField.text successBlock:^(NSDictionary *responseDictionary) {
+        [[User sharedUserInstance] updateUserDataWithDictionary:responseDictionary];
         dispatch_async(dispatch_get_main_queue(), ^{
-            
-           [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-            if (responseDictionary[kErrors]) {
-                [[ErrorDisplayManager sharedManager] displayErrorWithDictionary:responseDictionary[kErrors][0] inView:self.view];
-            }
-            else {
-                [[User sharedUserInstance] updateUserDataWithDictionary:responseDictionary];
-                [self performSegueWithIdentifier:segueIDLoginToLeads sender:nil];
-            }
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            [self performSegueWithIdentifier:segueIDLoginToLeads sender:nil];
+        });
+    } failBlock:^(APIError *apiError, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            (apiError) ? [ErrorDisplayManager displayErrorWithAPIError:apiError inView:self.view] : nil;
+            (error) ? [ErrorDisplayManager displayErrorWithNSError:error inView:self.view] : nil;
         });
     }];
 }

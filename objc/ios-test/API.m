@@ -43,8 +43,9 @@ static API *sharedClient;
 
 - (void)GETPath:(NSString *)path
       parameter:(id)parameter
-completionHandler:(HTTPRequestCompletionBlock)completionHandler {
-    
+   successBlock:(NetworkCallSuccessBlock)successBlock
+      failBlock:(NetworkCallFailBlock)failBlock {
+
     self.apiRequest.HTTPMethod = @"GET";
     self.apiRequest.HTTPBody = nil;
     
@@ -61,47 +62,50 @@ completionHandler:(HTTPRequestCompletionBlock)completionHandler {
         [URLString appendFormat:@"/%@", ID];
     }
     self.apiRequest.URL = [NSURL URLWithString:URLString];
-    [self startTaskWithCompletionHandler:completionHandler];
+    [self startTaskWithSuccessBlock:successBlock failBlock:failBlock];
 }
 
 #pragma mark - POST
 
 - (void)POSTPath:(NSString *)path
       parameters:(NSDictionary *)parameters
-completionHandler:(HTTPRequestCompletionBlock)completionHandler {
+    successBlock:(NetworkCallSuccessBlock)successBlock
+    failBlock:(NetworkCallFailBlock)failBlock {
     
     self.apiRequest.HTTPMethod = @"POST";
     parameters.count ? self.apiRequest.HTTPBody = [parameters toData]: nil;
     self.apiRequest.URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", URL_STAGING, path]];
-    [self startTaskWithCompletionHandler:completionHandler];
+    [self startTaskWithSuccessBlock:successBlock failBlock:failBlock];
 }
 
 #pragma mark - Start task
 
-- (void)startTaskWithCompletionHandler:(HTTPRequestCompletionBlock)completionHandler {
+- (void)startTaskWithSuccessBlock:(NetworkCallSuccessBlock)successBlock failBlock:(NetworkCallFailBlock)failBlock {
     [[[NSURLSession sharedSession] dataTaskWithRequest:self.apiRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSDictionary *responseDictionary = [[NSDictionary alloc] init];
         
         if (data == nil) {
-#if PRINT_RESPONSE == 1
-            NSLog(@"\nURL: %@ \nMETHOD: %@ \nERROR: %@",
-                  self.apiRequest.URL, self.apiRequest.HTTPMethod, error);
-#endif
-            completionHandler(nil);
+            failBlock(nil, error);
         } else {
-            NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-#if PRINT_RESPONSE == 1
-            NSLog(@"\nURL: %@ \nMETHOD: %@ \nRESPONSE: %@",
-                  self.apiRequest.URL, self.apiRequest.HTTPMethod, responseDictionary);
-#endif
-            completionHandler(responseDictionary);
+            responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+            if (responseDictionary[kErrors] && responseDictionary[kErrors][0]) {
+                APIError *error = [[APIError alloc] initWithDataWithDictionary:responseDictionary[kErrors][0]];
+                failBlock(error, nil);
+            }
+            else {
+                successBlock(responseDictionary);
+            }
         }
+#if PRINT_RESPONSE == 1
+        NSLog(@"\nURL: %@ \nMETHOD: %@ \nRESPONSE: %@ \nERROR: %@", self.apiRequest.URL, self.apiRequest.HTTPMethod, responseDictionary, error);
+#endif
+        
     }] resume];
 }
 
 #pragma mark - Set header values
 
 - (void)setRequestHeaders {
-    
     [self.apiRequest addValue:HTTPHeaderAccept forHTTPHeaderField:@"Accept"];
     [self.apiRequest addValue:HTTPHeaderAuthorization forHTTPHeaderField:@"Authorization"];
     [self.apiRequest addValue:HTTPHeaderContentType forHTTPHeaderField:@"Content-Type"];
@@ -111,7 +115,6 @@ completionHandler:(HTTPRequestCompletionBlock)completionHandler {
 #pragma mark - Token Handler
 
 - (NSString *)extractTokenFromDictionary:(NSDictionary *)dict {
-    
     if (dict && dict[kMeta][kToken]) {
         return dict[kMeta][kToken];
     }

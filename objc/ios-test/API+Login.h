@@ -12,6 +12,7 @@
 
 - (void)loginWithUsername:(NSString *)username
                  password:(NSString *)password
-        completionHandler:(HTTPRequestCompletionBlock)completionHandler;
+             successBlock:(NetworkCallSuccessBlock)successBlock
+                failBlock:(NetworkCallFailBlock)failBlock;
 
 @end

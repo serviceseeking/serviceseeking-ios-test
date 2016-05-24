@@ -12,13 +12,13 @@
 
 - (void)loginWithUsername:(NSString *)username
                  password:(NSString *)password
-        completionHandler:(HTTPRequestCompletionBlock)completionHandler {
-    
+             successBlock:(NetworkCallSuccessBlock)successBlock
+                failBlock:(NetworkCallFailBlock)failBlock {
     NSDictionary *usernameAndPassword = @{kEmail: username, kPassword: password};
     NSDictionary *typeAndAttributes = @{kType: @"user_sessions", kAttributes: usernameAndPassword};
     NSMutableDictionary *parameters = @{kData: typeAndAttributes}.mutableCopy;
     
-    [self POSTPath:PATH_SIGN_IN parameters:parameters completionHandler:completionHandler];
+    [self POSTPath:PATH_SIGN_IN parameters:parameters successBlock:successBlock failBlock:failBlock];
 }
 
 @end

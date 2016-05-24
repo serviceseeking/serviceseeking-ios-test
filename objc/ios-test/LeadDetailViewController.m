@@ -12,6 +12,7 @@
 #import "API+Leads.h"
 #import "MBProgressHUD+Loading.h"
 #import "NSString+Helper.h"
+#import "ErrorDisplayManager.h"
 
 @interface LeadDetailViewController ()
 
@@ -33,13 +34,18 @@
     
     [MBProgressHUD showLoadingHUDAddedTo:self.navigationController.view labelText:@"Loading" detailLabelText:@"Please wait . . ."];
     
-    [[API sharedClient] getLeadWithID:self.leadID completionHandler:^(NSDictionary *responseDictionary) {
-        
+    [[API sharedClient] getLeadWithID:self.leadID successBlock:^(NSDictionary *responseDictionary) {
         Lead *lead = [[Lead alloc] initWithDataDictionary:responseDictionary[kData]];
-        
         dispatch_async(dispatch_get_main_queue(), ^{
             [self updateInfoWithLead:lead];
             [MBProgressHUD hideAllHUDsForView:self.navigationController.view animated:YES];
+        });
+        
+    } failBlock:^(APIError *apiError, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            (apiError) ? [ErrorDisplayManager displayErrorWithAPIError:apiError inView:self.view] : nil;
+            (error) ? [ErrorDisplayManager displayErrorWithNSError:error inView:self.view] : nil;
         });
     }];
 }
@@ -60,7 +66,6 @@
 #pragma mark - Days and hours remaining
 
 - (NSString *)numberOfDaysAndHoursLeft:(NSDate *)date {
-    
     if (date != nil) {
         NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay fromDate:[NSDate date] toDate:date options:0];
         NSInteger days = components.day;
@@ -70,17 +75,11 @@
         
         if (days > 0) {
             [daysRemaining appendFormat:@"%ld day", (long)days];
-            
-            if (days > 1) {
-                [daysRemaining appendString:@"s"];
-            }
+            (days > 1) ? [daysRemaining appendString:@"s"] : nil;
         }
         if (hours > 0) {
             [daysRemaining appendFormat:@" %ld hour", (long)hours];
-            
-            if (hours > 1) {
-                [daysRemaining appendString:@"s"];
-            }
+            (hours > 1) ? [daysRemaining appendString:@"s"] : nil;
         }
         return daysRemaining.copy;
     }
